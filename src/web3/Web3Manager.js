@@ -1,7 +1,7 @@
 import React from 'react';
 import Web3 from 'web3';
 import { connect } from 'react-redux';
-import { setWeb3, setAccount, setValidNetwork, initializeContract, fetchContract } from '../store/web3';
+import { setWeb3, setAccount, setValidNetwork, initializeContract, fetchContract } from '../store/web3/actions';
 
 const fetchWeb3 = (localProvider = null) => {
   let { web3 } = window;
@@ -13,6 +13,7 @@ const fetchWeb3 = (localProvider = null) => {
   else if (typeof web3 !== 'undefined') {
     // create new web3 instance with currentProvider
     web3 = new Web3(web3.currentProvider);
+    web3.eth.defaultAccount = web3.eth.accounts[0];
     return web3;
   }
   // if metamask did not inject web3 and we have no localProvider
@@ -85,12 +86,13 @@ class Web3Manager extends React.Component {
   }
 }
 
-function mapStateToProps(state, props) {
+function mapStateToProps(state) {
+  console.log(state);
   return {
-    hasWeb3: Object.keys(state.web3).length > 0,
-    validNetwork: state.validNetwork,
-    currentAccount: state.account,
-    initializedContract: Object.keys(state.contract).length > 0
+    hasWeb3: Object.keys(state.web3.web3).length > 0,
+    validNetwork: state.web3.network,
+    currentAccount: state.web3.account,
+    initializedContract: Object.keys(state.web3.contract).length > 0
   };
 }
 

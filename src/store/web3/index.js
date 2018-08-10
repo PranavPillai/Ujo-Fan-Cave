@@ -1,9 +1,7 @@
-export { default as web3 } from './web3';
-export { default as contract } from './contract';
-export { default as account } from './accounts';
-export { default as validNetwork } from './network';
+import * as actions from './actions';
+import initialState from './initialState';
+import reducer from './reducer';
 
-export * from './web3';
-export * from './contract';
-export * from './accounts';
-export * from './network';
+export const web3Actions = actions;
+export const web3InitialState = initialState;
+export const web3Reducer = reducer;

@@ -50,6 +50,7 @@
   },
   "dependencies": {
     "dotenv": "^2.0.0",
+    "immutable": "^3.8.2",
     "react": "^15.4.2",
     "react-dom": "^15.4.2",
     "react-loading-indicator": "^1.0.2",
@@ -59,7 +60,8 @@
     "redux": "^3.7.2",
     "redux-devtools-extension": "^2.13.2",
     "redux-logger": "^3.0.6",
-    "redux-thunk": "^2.2.0"
+    "redux-thunk": "^2.2.0",
+    "truffle": "^4.1.13"
   },
   "scripts": {
     "start": "node scripts/start.js"

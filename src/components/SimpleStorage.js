@@ -17,8 +17,8 @@ class SimpleStorage extends Component {
 
   // gets the number stored in smart contract storage
   getNumber = () => {
-    const { contract, accounts } = this.props;
-    contract.get.call(accounts[0])
+    const { contract, account } = this.props;
+    contract.get.call(account)
     .then(value => {
       // converts JS big number obj to string and back to number
       value = Number(value.toString());
@@ -32,7 +32,7 @@ class SimpleStorage extends Component {
     const { contract, accounts } = this.props;
     const { value } = this.state;
     // sets the gas price manually to make sure the transaction goes through
-    await contract.set(value + 1, {from: accounts[0], gasPrice: 5000000000});
+    await contract.set(value + 1, {from: accounts, gasPrice: 5000000000});
     this.getNumber();
   }
 
@@ -59,8 +59,8 @@ class SimpleStorage extends Component {
  */
 const mapState = (state) => {
   return {
-    contract: state.contract,
-    accounts: state.accounts
+    contract: state.web3.contract,
+    account: state.web3.account,
   }
 }
 
