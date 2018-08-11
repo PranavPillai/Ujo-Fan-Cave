@@ -1,9 +1,11 @@
-.badge-container .green {
-  color: green;
+.badge-image {
+  border-radius: 50%;
+  width: 300px;
+  height: 300px;
+  display: block;
 }
-.badge-container .blue {
-  color: blue;
-}
-.badge-container .red {
-  color: red;
+
+.badge-name {
+  text-align: center;
+  width: 300px;
 }

@@ -7,10 +7,10 @@ class BadgeList extends React.Component {
     return (
       <div className="badge-container">
         {this.props.badges.map(badge =>
-          (<Badge 
+          (<Badge
           key={badge.name}
           badgeName={badge.name}
-          color={badge.color} />)
+          image={badge.image}/>)
         )}
       </div>
     );

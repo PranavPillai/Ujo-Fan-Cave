@@ -2,6 +2,9 @@ import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import BadgeList from '../components/Badges/BadgeList';
+import carson from '../assets/CarsonWentz.jpg';
+import kevin from '../assets/Kevin.jpg';
+import ujo from '../assets/ujo.png'
 
 class HomePage extends React.Component {
   constructor(props) {
@@ -10,15 +13,15 @@ class HomePage extends React.Component {
       badges : [
         {
           name : 'Big Guy special release',
-          color : 'red'
+          image : carson,
         },
         {
           name : 'Small Guy t-shirt',
-          color : 'blue'
+          image : kevin,
         },
         {
           name : 'Medium Guy concert tickets',
-          color : 'green'
+          image : ujo,
         },
       ]
     }
