@@ -1,11 +1,18 @@
 import Truffle from 'truffle-contract';
+import {
+  fetchBadgeData,
+  prepareBadgesForRedux,
+} from './helpers';
 
 import {
   GET_ACCOUNT,
-  GOT_CONTRACT,
-  LOADING_CONTRACT,
   GET_NETWORK,
   GET_WEB3,
+  GOT_BADGE_CONTRACT,
+  LOADING_BADGE_CONTRACT,
+  GET_PATRONAGE_BADGES_REQUEST,
+  GET_PATRONAGE_BADGES_SUCCESS,
+  GET_PATRONAGE_BADGES_FAILURE,
 } from '../../constants/ActionTypes';
 
 export const setWeb3 = web3 => ({type: GET_WEB3, web3});
@@ -13,26 +20,52 @@ export const setWeb3 = web3 => ({type: GET_WEB3, web3});
 // receives true if the user is on a valid network, false if not
 export const setValidNetwork = bool => ({type: GET_NETWORK, bool});
 
-export const setContract = contract => ({type: GOT_CONTRACT, contract});
-export const loadingContract = contract => ({type: LOADING_CONTRACT, contract});
+export const setBadgeContract = contract => ({type: GOT_BADGE_CONTRACT, contract});
 
-let configuredContract;
-export const initializeContract = (contract, web3) => {
+export const loadingBadgeContract = contract => ({type: LOADING_BADGE_CONTRACT, contract});
+
+let patronageBadges;
+export const initializeBadgeContract = (contract, web3) => {
   // configures contract using truffle and current provider
-  if (!configuredContract){
-    configuredContract = Truffle(contract);
-    configuredContract.setProvider(web3.currentProvider);
-  };
+  if (!patronageBadges) {
+    patronageBadges = Truffle(contract);
+    patronageBadges.setProvider(web3.currentProvider);
+  } else {
+    console.log(patronageBadges);
+  }
 };
 
 /**
  * THUNK CREATORS
  */
-export const fetchContract = () => async dispatch => {
-  dispatch(loadingContract('Loading contract'))
+
+export const fetchBadgeContract = () => async dispatch => {
+  dispatch(loadingBadgeContract('Loading badge contract'));
   // returns a promise to avoid any race conditions on initial price fetch
-  const deployedContract = await configuredContract.deployed();
-  dispatch(setContract(deployedContract));
+  const deployedBadgeContract = await patronageBadges.deployed();
+  dispatch(setBadgeContract(deployedBadgeContract));
+};
+
+export const getBadgesByAddress = walletAddress => async (dispatch) => {
+  dispatch({ type: GET_PATRONAGE_BADGES_REQUEST });
+  try {
+    const patronageBadgesInstance = await patronageBadges.deployed();
+    const badgesByAddress = await patronageBadgesInstance.getAllTokens.call(walletAddress);
+    const badgeCids =
+      await Promise.all(badgesByAddress.map(badgeId =>
+        patronageBadgesInstance.tokenURI.call(badgeId)));
+    await console.log(badgeCids);
+    const confirmedBadgeData =
+      await Promise.all(badgeCids.map(cid =>
+        fetchBadgeData(cid, 'confirmed')));
+    const data = prepareBadgesForRedux([...confirmedBadgeData]);
+
+    dispatch({
+      type: GET_PATRONAGE_BADGES_SUCCESS, data,
+    });
+  } catch (err) {
+    dispatch({ type: GET_PATRONAGE_BADGES_FAILURE, err });
+  }
 };
 
 export const setAccount = account => ({type: GET_ACCOUNT, account});
