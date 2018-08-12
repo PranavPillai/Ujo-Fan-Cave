@@ -3,6 +3,7 @@ import {Route, Switch, Router} from 'react-router-dom'
 import history from '../history';
 import SimpleStorage from './SimpleStorage';
 import BadgeContract from './BadgeContract';
+import HomePage from '../pages/HomePage';
 
 const Routes = () =>
   <Router history={history}>
@@ -13,8 +14,9 @@ const Routes = () =>
         <Switch>
           <Route exact path='/' component={SimpleStorage} />
           <Route exact path='/badges' component={BadgeContract} />
+          <Route exact path='/home' component={HomePage} />
         </Switch>
       </div>
-  </Router>
+    </Router>
 
 export default Routes;
