@@ -1,6 +1,8 @@
 import React from 'react';
 import visComp from 'ujo-style-guide';
 import openSocket from 'socket.io-client';
+import ChatBox from '../components/ChatBox/ChatBox';
+import './fanpage.css';
 
 const socket = openSocket('http://localhost:8000');
 const Row = visComp.Row;
@@ -22,6 +24,7 @@ class FanPage extends React.Component {
       this.setState({messages : messagesCopy});
     });
     this.onChange = this.onChange.bind(this);
+    this.onSubmit = this.onSubmit.bind(this);
   }
 
   componentDidMount() {
@@ -34,28 +37,29 @@ class FanPage extends React.Component {
 
   onChange(e) {
     this.setState({input: e.target.value});
-    socket.emit('message', {room: this.props.match.params.id, message: e.target.value});
+  }
+
+  onSubmit(e) {
+    e.preventDefault();
+    const messages = this.state.messages;
+    messages.push(this.state.input);
+    this.setState({messages});
+    socket.emit('message', {room: this.props.match.params.id, message: this.state.input});
+    this.setState({input: ''});
   }
 
   render() {
     return (
-      <div className="discover-page section section-page">
+      <div className="fan-page">
         <div className="container">
           <Row>
             <Col lg={10} lgOffset={1}>
               <Row className="section-header">
                 <Col xs={12} sm={12} md={6} lg={6}>
-                  <h1 style={{position: 'absolute', left: '300px',}}>Discover</h1>
-                  <form>
-                    <input style={{position: 'absolute', left: '300px',}} type="text" value={this.state.input} onChange={this.onChange}/>
-                  </form>
-                  <div style={{position: 'absolute', left: '300px',}}>
-                    {
-                      this.state.messages.map((message) => {
-                        return message;
-                      })
-                    }
-                  </div>
+                  <h1>Fan Page</h1>
+                </Col>
+                <Col xs={12} sm={12} md={6} lg={6}>
+                  <ChatBox input={this.state.input} messages={this.state.messages} onChange={this.onChange} onSubmit={this.onSubmit} />
                 </Col>
               </Row>
             </Col>
