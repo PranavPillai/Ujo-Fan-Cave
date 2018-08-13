@@ -3,11 +3,6 @@ import { connect } from 'react-redux';
 import BadgeList from '../Badges/BadgeList';
 
 class Navbar extends React.Component {
-
-  componentDidMount() {
-
-  }
-
   render() {
     return (
       <div>
@@ -18,6 +13,7 @@ class Navbar extends React.Component {
     );
   }
 }
+
 const mapStateToProps = (state) => {
   return {
     badges: state.web3.badges,
