@@ -47,7 +47,6 @@ const reducer = (state = initialState, action) => {
         badgesLoading: true,
       });
     case GET_PATRONAGE_BADGES_SUCCESS:
-      console.log(action);
       return Object.assign({}, state, {
         badgesLoaded: true,
         badgesLoading: false,

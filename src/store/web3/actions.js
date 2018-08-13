@@ -30,8 +30,6 @@ export const initializeBadgeContract = (contract, web3) => {
   if (!patronageBadges) {
     patronageBadges = Truffle(contract);
     patronageBadges.setProvider(web3.currentProvider);
-  } else {
-    console.log(patronageBadges);
   }
 };
 
