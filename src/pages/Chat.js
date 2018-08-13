@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { sendMessage } from '../store/chat/actions'
 
 class Chat extends React.Component {
   constructor(props) {
@@ -14,10 +15,12 @@ class Chat extends React.Component {
 
    updateState(event) {
       this.setState({data: event.target.value});
+      event.preventDefault();
    }
 
    handleSubmit(event) {
      alert('A name was submitted: ' + this.state.data);
+     this.props.sendMessage(this.state.data)
      event.preventDefault();
    }
 
@@ -34,4 +37,14 @@ class Chat extends React.Component {
   }
 }
 
-export default Chat;
+function mapStateToProps(state) {
+  return {
+  };
+}
+
+export default connect(
+  mapStateToProps,
+  {
+    sendMessage,
+  }
+)(Chat);
