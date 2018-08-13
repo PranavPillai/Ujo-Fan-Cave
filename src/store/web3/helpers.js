@@ -15,7 +15,7 @@ export const fetchBadgeData = async (staleCid, badgeState, txHash = null) => {
     returnObj.description = description;
   } catch (err) {
     // if the server doesnt have the cid, the badge was bought elsewhere, so we use old cid
-    console.log(err);
+    //console.log(err);
   }
   if (badgeState === 'pending') returnObj.txHash = txHash;
   returnObj.state = badgeState;
@@ -25,7 +25,6 @@ export const fetchBadgeData = async (staleCid, badgeState, txHash = null) => {
 // collects badges that are of the same MG, uses ID as key for returnObj
 export const prepareBadgesForRedux = (badgeArray) => {
   const returnObj = {};
-  console.log(badgeArray);
   badgeArray.forEach((badge) => {
     if (badge.id) {
       const { id } = badge;

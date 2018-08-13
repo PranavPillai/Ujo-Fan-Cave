@@ -4,13 +4,14 @@ import Badge from './Badge';
 class BadgeList extends React.Component {
 
   render() {
+    console.log(this.props.badges);
+    const { badges } = this.props;
     return (
       <div className="badge-container">
-        {this.props.badges.map(badge =>
+        {Object.keys(badges).map(badgeId =>
           (<Badge
-          key={badge.name}
-          badgeName={badge.name}
-          image={badge.image}/>)
+          key={badgeId}
+          badge={badges[badgeId]}/>)
         )}
       </div>
     );

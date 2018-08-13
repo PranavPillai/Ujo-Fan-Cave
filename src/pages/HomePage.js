@@ -30,7 +30,9 @@ class HomePage extends React.Component {
     return (
       <div>
         <h1>This is the Home Page!</h1>
-        <BadgeList badges={this.state.badges} />
+        {
+          Object.keys(this.props.badges).length > 0 && <BadgeList badges={this.props.badges} />
+        }
       </div>
     );
   }
