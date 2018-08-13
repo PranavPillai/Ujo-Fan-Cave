@@ -2,6 +2,9 @@ import React from 'react';
 import visComp from 'ujo-style-guide';
 import openSocket from 'socket.io-client';
 import ChatBox from '../components/ChatBox/ChatBox';
+import { connect } from 'react-redux';
+import { sendMessage } from '../store/chat/actions';
+import firebase from '../config/firebase';
 import './fanpage.css';
 
 const socket = openSocket('http://localhost:8000');
@@ -9,7 +12,6 @@ const Row = visComp.Row;
 const Col = visComp.Col;
 
 class FanPage extends React.Component {
-
   constructor(props) {
     super(props);
 
@@ -18,7 +20,6 @@ class FanPage extends React.Component {
       messages: [],
     }
     socket.on('public message', (messageObj) => {
-      console.log(messageObj);
       const messagesCopy = this.state.messages;
       messagesCopy.push(messageObj.message);
       this.setState({messages : messagesCopy});
@@ -29,6 +30,17 @@ class FanPage extends React.Component {
 
   componentDidMount() {
     socket.emit('subscribe', {room: this.props.match.params.id});
+    const chatRoomRef = firebase.database().ref(this.props.match.params.id);
+    chatRoomRef.on('value', (snapshot) => {
+      let messages = snapshot.val();
+      console.log(messages);
+      const newMessages = [];
+      for(const message in messages) {
+        console.log(messages[message]);
+        newMessages.push(messages[message]);
+      }
+      this.setState({messages: newMessages});
+    });
   }
 
   componentWillUnmount() {
@@ -41,11 +53,13 @@ class FanPage extends React.Component {
 
   onSubmit(e) {
     e.preventDefault();
+    const message = this.state.input;
     const messages = this.state.messages;
-    messages.push(this.state.input);
+    messages.push(message);
     this.setState({messages});
-    socket.emit('message', {room: this.props.match.params.id, message: this.state.input});
+    socket.emit('message', {room: this.props.match.params.id, message});
     this.setState({input: ''});
+    sendMessage(message);
   }
 
   render() {
@@ -70,4 +84,15 @@ class FanPage extends React.Component {
   }
 }
 
-export default FanPage;
+function mapStateToProps(state) {
+  return {
+
+  };
+}
+
+export default connect(
+  mapStateToProps,
+  {
+    sendMessage,
+  }
+)(FanPage);
