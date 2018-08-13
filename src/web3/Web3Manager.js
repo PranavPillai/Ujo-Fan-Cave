@@ -1,7 +1,7 @@
 import React from 'react';
 import Web3 from 'web3';
 import { connect } from 'react-redux';
-import { setWeb3, setAccount, setValidNetwork, initializeContract, fetchContract, initializeBadgeContract, fetchBadgeContract } from '../store/web3/actions';
+import { setWeb3, setAccount, setValidNetwork, fetchContract, initializeBadgeContract, fetchBadgeContract, getBadgesByAddress } from '../store/web3/actions';
 
 const fetchWeb3 = (localProvider = null) => {
   let { web3 } = window;
@@ -38,8 +38,9 @@ class Web3Manager extends React.Component {
     // if any localProvider was passed in as prop, we use it to construct the web3 object
     const { localProvider, hasWeb3, setWeb3,
       currentAccount, setAccount,
-      validNetwork, requiredNetwork, setValidNetwork,
-      initializedContract, fetchContract, contract, badgeContract, initializedBadgeContract, fetchBadgeContract } = this.props;
+      validNetwork, requiredNetwork, setValidNetwork, 
+      badgeContract, initializedBadgeContract, 
+      fetchBadgeContract, getBadgesByAddress } = this.props;
 
     const web3 = fetchWeb3(localProvider || null);
 
@@ -72,15 +73,10 @@ class Web3Manager extends React.Component {
       }
 
       /* -------- initializes smart contract if not already done ---------- */
-      if (!initializedContract && contract) {
-        // passes the compiled contract and web3 to initialize contract
-        // puts contract on redux store state
-        initializeContract(contract, web3);
-        fetchContract();
-      }
-      if(!initializedBadgeContract && badgeContract) {
-        initializeBadgeContract(badgeContract, web3);
-        fetchBadgeContract();
+      if(!initializedBadgeContract && badgeContract && account) {
+        await initializeBadgeContract(badgeContract, web3);
+        await fetchBadgeContract();
+        await getBadgesByAddress(account);
       }
     }
   }
@@ -97,7 +93,7 @@ function mapStateToProps(state) {
     validNetwork: state.web3.network,
     currentAccount: state.web3.account,
     initializedContract: Object.keys(state.web3.contract).length > 0,
-    initializedBadgeContract: Object.keys(state.web3.badgeContract).length > 0
+    initializedBadgeContract: Object.keys(state.web3.badgeContract).length > 0,
   };
 }
 
@@ -109,5 +105,6 @@ export default connect(
     setValidNetwork,
     fetchContract,
     fetchBadgeContract,
+    getBadgesByAddress,
   }
 )(Web3Manager);

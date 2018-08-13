@@ -1,10 +1,9 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import PropTypes from 'prop-types';
 import BadgeList from '../components/Badges/BadgeList';
 import carson from '../assets/CarsonWentz.jpg';
 import kevin from '../assets/Kevin.jpg';
-import ujo from '../assets/ujo.png'
+import ujo from '../assets/ujo.png';
 
 class HomePage extends React.Component {
   constructor(props) {
@@ -26,6 +25,7 @@ class HomePage extends React.Component {
       ]
     }
   }
+
   render() {
     return (
       <div>
@@ -35,5 +35,10 @@ class HomePage extends React.Component {
     );
   }
 }
+const mapStateToProps = (state) => {
+  return {
+    badges: state.web3.badges,
+  }
+}
 
-export default HomePage;
+export default connect(mapStateToProps)(HomePage);

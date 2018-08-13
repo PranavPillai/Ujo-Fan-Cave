@@ -53,8 +53,7 @@ export const getBadgesByAddress = walletAddress => async (dispatch) => {
     const badgesByAddress = await patronageBadgesInstance.getAllTokens.call(walletAddress);
     const badgeCids =
       await Promise.all(badgesByAddress.map(badgeId =>
-        patronageBadgesInstance.tokenURI.call(badgeId)));
-    await console.log(badgeCids);
+        !isNaN(badgeId) && patronageBadgesInstance.tokenURI.call(badgeId)));
     const confirmedBadgeData =
       await Promise.all(badgeCids.map(cid =>
         fetchBadgeData(cid, 'confirmed')));
