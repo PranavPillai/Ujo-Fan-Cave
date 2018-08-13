@@ -4,6 +4,7 @@ import history from '../history';
 import SimpleStorage from './SimpleStorage';
 import BadgeContract from './BadgeContract';
 import HomePage from '../pages/HomePage';
+import Chat from '../pages/Chat';
 
 const Routes = () =>
   <Router history={history}>
@@ -15,6 +16,7 @@ const Routes = () =>
           <Route exact path='/' component={SimpleStorage} />
           <Route exact path='/badges' component={BadgeContract} />
           <Route exact path='/home' component={HomePage} />
+          <Route exact path='/chat' component={Chat} />
         </Switch>
       </div>
     </Router>
