@@ -3,6 +3,11 @@ import { connect } from 'react-redux';
 import BadgeList from '../Badges/BadgeList';
 
 class Navbar extends React.Component {
+
+  componentDidMount() {
+
+  }
+
   render() {
     return (
       <div>

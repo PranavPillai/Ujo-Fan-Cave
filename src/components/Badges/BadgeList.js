@@ -4,7 +4,6 @@ import Badge from './Badge';
 class BadgeList extends React.Component {
 
   render() {
-    console.log(this.props.badges);
     const { badges } = this.props;
     return (
       <div className="badge-list-container">
