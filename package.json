@@ -32,16 +32,20 @@
     "http-proxy-middleware": "0.17.2",
     "jest": "18.1.0",
     "json-loader": "0.5.4",
+    "node-sass-chokidar": "0.0.2",
+    "npm-run-all": "^4.0.2",
     "object-assign": "4.1.0",
     "path-exists": "2.1.0",
     "postcss-loader": "1.0.0",
     "promise": "7.1.1",
     "react-dev-utils": "^0.4.2",
+    "react-scripts": "1.0.7",
     "recursive-readdir": "2.1.0",
     "strip-ansi": "3.0.1",
     "style-loader": "0.13.1",
     "truffle-contract": "^1.1.8",
     "truffle-solidity-loader": "0.0.8",
+    "ujo-style-guide": "git+ssh://git@github.com/ConsenSys/ujo-style-guide.git#f93b010",
     "url-loader": "0.5.7",
     "webpack": "1.14.0",
     "webpack-dev-server": "1.16.2",
@@ -66,7 +70,11 @@
     "ujo-contracts-badges": "git+ssh://git@github.com:UjoTeam/contracts-badges.git#a5954cc"
   },
   "scripts": {
-    "start": "node scripts/start.js"
+    "start": "node scripts/start.js",
+    "dev": "REACT_APP_ENV=local npm-run-all -p watch-css start-js",
+    "build-css": "node-sass-chokidar src/ -o src/",
+    "start-js": "react-scripts start",
+    "watch-css": "npm run build-css && node-sass-chokidar src/ -o src/ --watch --recursive"
   },
   "jest": {
     "collectCoverageFrom": [

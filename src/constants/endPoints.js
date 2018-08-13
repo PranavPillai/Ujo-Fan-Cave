@@ -33,7 +33,7 @@ if (process.env.REACT_APP_ENV === 'local') { // local serves local go server
   HOSTNAME = 'www.ujomusic.com';
 }
 
-export const API_ENDPOINT = 'http://localhost:9001/api';
+export const API_ENDPOINT = API;
 export const IMAGE_PROXY_ENDPOINT = IMAGE_PROXY;
 // TODO: add back for dev version of proxy server
 export const AUDIO_PROXY_ENDPOINT = `https://${HOSTNAME}/v2/audio/mp3/`;

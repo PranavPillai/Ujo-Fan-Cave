@@ -1,11 +1,64 @@
-.badge-container {
-  .green {
-    color: green;
+@import "../../../node_modules/ujo-style-guide/src/styles/baseStyles/variables.scss";
+
+.badge-list-container {
+
+  min-height: 100vh;
+  height: 100%;
+  width: 300px;
+  left: 0px;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  overflow-y: scroll;
+
+  background: #fff;
+  border-right: 1px solid $anti-white;
+  box-shadow: 0px 0px 5px rgba(128, 128, 128, 0.4);
+
+  transition: all 0.3 ease-in-out;
+
+  .logo-container {
+    background-size: contain;
+    width: 97.5px;
+    height: 45px;
+    margin-left: 20px;
+    margin-top: 20px;
   }
-  .blue {
-    color: blue;
+
+  .header {
+    font-size: 1.25rem;
+    margin-left: 20px;
+    margin-top: 10px;
   }
-  .red {
-    color: red;
+
+  .badge-container {
+    cursor: pointer;
+    height: 120px;
+    color: $text-medium-gray;
+    font-size: 1.2rem;
+    order: 1;
+    padding: 20px;
+
+    .badge-image {
+      border-radius: 50%;
+      width: 110px;
+      height: 110px;
+    }
+    
+    .badge-name {
+      float: right;
+      padding-top: 20px;
+    }
+
+    &.active, &:hover {
+      background-color: $anti-white;
+    }
+  }
+
+  .link {
+    text-decoration: none;
   }
 }

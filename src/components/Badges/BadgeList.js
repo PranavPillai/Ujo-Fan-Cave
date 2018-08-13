@@ -7,7 +7,7 @@ class BadgeList extends React.Component {
     console.log(this.props.badges);
     const { badges } = this.props;
     return (
-      <div className="badge-container">
+      <div className="badge-list-container">
         {Object.keys(badges).map(badgeId =>
           (<Badge
           key={badgeId}

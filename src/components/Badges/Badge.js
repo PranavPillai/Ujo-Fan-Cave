@@ -7,9 +7,9 @@ class Badge extends React.Component {
     const {badge: {image: {contentURL: imgSrc}, name, id}} = this.props;
     return (
       <Link to={'/' + id}>
-        <div>
-        <img src={imgSrc} alt='Artist Badge' className='badge-image'/>
-        <p className='badge-name'> {name} </p>
+        <div className="badge-container">
+          <img src={imgSrc} alt='Artist Badge' className='badge-image'/>
+          <p className='badge-name'> {name} </p>
         </div>
       </Link>
     );
