@@ -1,7 +1,7 @@
 import React from 'react';
 import Web3 from 'web3';
 import { connect } from 'react-redux';
-import { setWeb3, setAccount, setValidNetwork, fetchContract, initializeBadgeContract, fetchBadgeContract, getBadgesByAddress } from '../store/web3/actions';
+import { setWeb3, setAccount, setValidNetwork, initializeBadgeContract, fetchBadgeContract, getBadgesByAddress } from '../store/web3/actions';
 
 const fetchWeb3 = (localProvider = null) => {
   let { web3 } = window;
@@ -102,7 +102,6 @@ export default connect(
     setWeb3,
     setAccount,
     setValidNetwork,
-    fetchContract,
     fetchBadgeContract,
     getBadgesByAddress,
   }

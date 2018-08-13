@@ -4,11 +4,11 @@ import thunkMiddleware from 'redux-thunk'
 import { composeWithDevTools } from 'redux-devtools-extension'
 import { web3Reducer } from './web3'
 
-export const reducer = combineReducers({ web3: web3Reducer })
+export const reducer = combineReducers({ web3: web3Reducer });
 const middleware = composeWithDevTools(applyMiddleware(
   thunkMiddleware,
   createLogger({collapsed: true})
-))
-const store = createStore(reducer, middleware)
+));
+const store = createStore(reducer, middleware);
 
-export default store
+export default store;

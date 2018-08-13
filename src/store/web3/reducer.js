@@ -1,7 +1,5 @@
 import {
   GET_ACCOUNT,
-  GOT_CONTRACT,
-  LOADING_CONTRACT,
   GET_NETWORK,
   GET_WEB3,
   GOT_BADGE_CONTRACT,
@@ -18,17 +16,9 @@ const reducer = (state = initialState, action) => {
       return Object.assign({}, state, {
         account: action.account
       });
-    case GOT_CONTRACT:
-      return Object.assign({}, state, {
-        contract: action.contract
-      });
     case GOT_BADGE_CONTRACT:
       return Object.assign({}, state, {
         badgeContract: action.contract
-      });
-    case LOADING_CONTRACT:
-      return Object.assign({}, state, {
-        contract: action.contract
       });
     case LOADING_BADGE_CONTRACT:
       return Object.assign({}, state, {
