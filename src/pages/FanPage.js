@@ -12,7 +12,7 @@ class FanPage extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      input: '',
+      input: 'Type something to send...',
       room: this.props.match.params.id,
     }
     this.onChange = this.onChange.bind(this);
