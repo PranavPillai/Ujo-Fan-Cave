@@ -1,7 +1,10 @@
 import React from 'react';
 import visComp from 'ujo-style-guide';
 import { connect } from 'react-redux';
+import sendImg from '../../assets/send.png';
+import attachFile from '../../assets/attach-file.png';
 import Message from './Message';
+import './styles.css';
 
 const Row = visComp.Row;
 const Col = visComp.Col;
@@ -15,9 +18,14 @@ class ChatBox extends React.Component {
       <div className="chat-box">
         <Row>
           <Col xs={12} sm={12} md={6} lg={6}>
-            <form>
-              <input type="text" value={input} onChange={onChange}/>
-              <button type="submit" onClick={onSubmit}>Hey</button>
+            <form className="sendBar">
+              <input className='inputBar' type="text" value={input} onChange={onChange} />
+              <button className='chatButton' type="submit" onClick={onSubmit}>
+                <img src={sendImg} alt="send"/>
+              </button>
+              <button className='chatButton'>
+                <img src={attachFile} alt="attach"/>
+              </button>
             </form>
             <div className="messages">
               {

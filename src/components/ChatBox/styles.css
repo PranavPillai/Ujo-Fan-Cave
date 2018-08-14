@@ -1,0 +1,18 @@
+.sendBar {
+  overflow: hidden;
+  position: absolute;
+  bottom: 10px;
+  width: 80%;
+  border: 3px; }
+  .sendBar .inputBar {
+    line-height: normal;
+    width: 80%;
+    float: left;
+    padding: 12px 10px;
+    margin: 80px 0; }
+  .sendBar .chatButton {
+    margin: 80px 0;
+    padding: 12px 10px; }
+
+.chat-box {
+  min-height: stretch; }
