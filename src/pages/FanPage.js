@@ -46,8 +46,8 @@ class FanPage extends React.Component {
     this.props.sendMessage(message, this.props.match.params.id);
   }
 
-  render() {
-    return (
+  renderFanPage() {
+    return(
       <div className="fan-page">
         <div className="container">
           <Row>
@@ -66,12 +66,42 @@ class FanPage extends React.Component {
       </div>
     );
   }
+
+  renderBadgeNotPurchased() {
+    return (<div className="fan-page">
+      <div className="container">
+        <Row>
+          <Col lg={10} lgOffset={1}>
+            <Row className="section-header">
+              <Col xs={12} sm={12} md={6} lg={6}>
+                <h1>Uh Oh! It seems as if you haven't yet purchased this badge!</h1>
+              </Col>
+            </Row>
+          </Col>
+        </Row>
+      </div>
+    </div>);
+  }
+
+  render() {
+    let hasBadge = false;
+    const { badges, room } = this.props;
+    for(const badge in badges) {
+      if(badge === room) {
+        hasBadge = true;
+      }
+    }
+    return hasBadge
+      ? this.renderFanPage()
+      : this.renderBadgeNotPurchased()
+  }
 }
 
 function mapStateToProps(state) {
   return {
     room: state.chat.room,
     messages: state.chat.messages,
+    badges: state.web3.badges,
   };
 }
 

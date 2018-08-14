@@ -9,7 +9,7 @@ export const dispatchMessage = message => ({type: MESSAGE, message});
 
 export const sendMessage = (message, room) => async dispatch => {
   const chatRoomRef = firebase.database().ref(room);
-  chatRoomRef.push().set(message);
+  chatRoomRef.push().set({message});
   dispatch(dispatchMessage(message));
 };
 
