@@ -1,11 +1,11 @@
 import React from 'react';
 import visComp from 'ujo-style-guide';
+import { connect } from 'react-redux';
 
 const Row = visComp.Row;
 const Col = visComp.Col;
 
-class FanPage extends React.Component {
-
+class ChatBox extends React.Component {
   render() {
     return (
       <div className="fan-page">
@@ -31,4 +31,10 @@ class FanPage extends React.Component {
   }
 }
 
-export default FanPage;
+function mapStateToProps(state) {
+  return {
+    messages: state.chat.messages,
+  };
+}
+
+export default connect(mapStateToProps)(ChatBox);

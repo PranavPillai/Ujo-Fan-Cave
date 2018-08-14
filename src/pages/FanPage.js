@@ -1,50 +1,41 @@
 import React from 'react';
 import visComp from 'ujo-style-guide';
-import openSocket from 'socket.io-client';
 import ChatBox from '../components/ChatBox/ChatBox';
 import { connect } from 'react-redux';
-import { sendMessage } from '../store/chat/actions';
-import firebase from '../config/firebase';
+import { sendMessage, getMessages, clearMessages } from '../store/chat/actions';
 import './fanpage.css';
 
-const socket = openSocket('http://localhost:8000');
 const Row = visComp.Row;
 const Col = visComp.Col;
 
 class FanPage extends React.Component {
   constructor(props) {
     super(props);
-
     this.state = {
       input: '',
-      messages: [],
+      room: this.props.match.params.id,
     }
-    socket.on('public message', (messageObj) => {
-      const messagesCopy = this.state.messages;
-      messagesCopy.push(messageObj.message);
-      this.setState({messages : messagesCopy});
-    });
     this.onChange = this.onChange.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
   }
 
   componentDidMount() {
-    socket.emit('subscribe', {room: this.props.match.params.id});
-    const chatRoomRef = firebase.database().ref(this.props.match.params.id);
-    chatRoomRef.on('value', (snapshot) => {
-      let messages = snapshot.val();
-      console.log(messages);
-      const newMessages = [];
-      for(const message in messages) {
-        console.log(messages[message]);
-        newMessages.push(messages[message]);
-      }
-      this.setState({messages: newMessages});
-    });
+    this.props.clearMessages();
+    this.props.getMessages(this.props.match.params.id);
   }
 
-  componentWillUnmount() {
-    socket.emit('unsubscribe', {room: this.props.match.params.id});
+  componentDidUpdate(props) {
+    const { id } = this.props.match.params;
+    if(id !== this.state.room) {
+      this.setState({room: id});
+      this.props.clearMessages();
+      this.props.getMessages(this.props.match.params.id);
+    }
+    console.log(this.state.room, props.match.params.id);
+    // console.log('hey there');
+    // props.clearMessages();
+    // props.getMessages(props.match.params.id);
+    // this.props.setRoom(this.props.match.params.id);
   }
 
   onChange(e) {
@@ -54,12 +45,8 @@ class FanPage extends React.Component {
   onSubmit(e) {
     e.preventDefault();
     const message = this.state.input;
-    const messages = this.state.messages;
-    messages.push(message);
-    this.setState({messages});
-    socket.emit('message', {room: this.props.match.params.id, message});
     this.setState({input: ''});
-    sendMessage(message);
+    this.props.sendMessage(message, this.props.match.params.id);
   }
 
   render() {
@@ -73,7 +60,7 @@ class FanPage extends React.Component {
                   <h1>Fan Page</h1>
                 </Col>
                 <Col xs={12} sm={12} md={6} lg={6}>
-                  <ChatBox input={this.state.input} messages={this.state.messages} onChange={this.onChange} onSubmit={this.onSubmit} />
+                  <ChatBox input={this.state.input} onChange={this.onChange} onSubmit={this.onSubmit} />
                 </Col>
               </Row>
             </Col>
@@ -86,7 +73,8 @@ class FanPage extends React.Component {
 
 function mapStateToProps(state) {
   return {
-
+    room: state.chat.room,
+    messages: state.chat.messages,
   };
 }
 
@@ -94,5 +82,7 @@ export default connect(
   mapStateToProps,
   {
     sendMessage,
+    getMessages,
+    clearMessages,
   }
 )(FanPage);
