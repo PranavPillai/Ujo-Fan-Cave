@@ -4,8 +4,13 @@ import thunkMiddleware from 'redux-thunk'
 import { composeWithDevTools } from 'redux-devtools-extension'
 import { web3Reducer } from './web3';
 import { chatReducer } from './chat';
+import { userReducer } from './user';
 
-export const reducer = combineReducers({ web3: web3Reducer, chat: chatReducer });
+export const reducer = combineReducers({ 
+  web3: web3Reducer, 
+  chat: chatReducer, 
+  user: userReducer
+});
 const middleware = composeWithDevTools(applyMiddleware(
   thunkMiddleware,
   createLogger({collapsed: true})
