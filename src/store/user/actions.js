@@ -12,7 +12,7 @@ export const fetchUser = (ethereumaddress) => async dispatch => {
     const {data} = 
       await axios.get(`${API_ENDPOINT}/persons?ethereumAddress=${ethereumaddress}`);
       dispatch({
-        type: GET_PERSONA_SUCCESS, data
+        type: GET_PERSONA_SUCCESS, user: data[0]
       });
   } catch (err) {
     dispatch({type: GET_PERSONA_FAILURE, err});

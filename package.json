@@ -54,6 +54,7 @@
   },
   "dependencies": {
     "axios": "^0.18.0",
+    "classnames": "^2.2.6",
     "dotenv": "^2.0.0",
     "firebase": "^5.3.1",
     "immutable": "^3.8.2",

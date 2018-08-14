@@ -18,7 +18,7 @@ import initialState from './initialState';
         loadingPersona: false,
         personaSuccess: true,
         personaFailure: false,
-        user: action.data,
+        user: action.user,
       });
     }
     case GET_PERSONA_FAILURE: {
