@@ -2,7 +2,7 @@ import React from 'react';
 import visComp from 'ujo-style-guide';
 import ChatBox from '../components/ChatBox/ChatBox';
 import { connect } from 'react-redux';
-import { sendMessage, getMessages, clearMessages, setRoom } from '../store/chat/actions';
+import { sendMessage, clearMessages, setRoom } from '../store/chat/actions';
 import './fanpage.css';
 
 const Row = visComp.Row;
@@ -21,7 +21,6 @@ class FanPage extends React.Component {
 
   componentDidMount() {
     this.props.clearMessages();
-    this.props.getMessages(this.props.match.params.id);
     this.props.setRoom(this.props.match.params.id);
   }
 
@@ -30,7 +29,6 @@ class FanPage extends React.Component {
     if(id !== this.state.room) {
       this.setState({room: id});
       this.props.clearMessages();
-      this.props.getMessages(this.props.match.params.id);
       this.props.setRoom(this.props.match.params.id);
     }
   }
@@ -41,8 +39,12 @@ class FanPage extends React.Component {
 
   onSubmit(e) {
     e.preventDefault();
+    const { name, address } = this.props;
     const messageObj = {
       message: this.state.input,
+      time: Date(),
+      name,
+      address,
     };
     this.setState({input: ''});
     this.props.sendMessage(messageObj, this.props.match.params.id);
@@ -104,6 +106,8 @@ function mapStateToProps(state) {
     room: state.chat.room,
     messages: state.chat.messages,
     badges: state.web3.badges,
+    address: state.user.user.ethereumAddress,
+    name: state.user.user.givenName + ' ' + state.user.user.familyName
   };
 }
 
@@ -111,7 +115,6 @@ export default connect(
   mapStateToProps,
   {
     sendMessage,
-    getMessages,
     clearMessages,
     setRoom,
   }

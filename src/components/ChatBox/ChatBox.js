@@ -3,6 +3,7 @@ import visComp from 'ujo-style-guide';
 import { connect } from 'react-redux';
 import sendImg from '../../assets/send.png';
 import attachFile from '../../assets/attach-file.png';
+import Message from './Message';
 import './styles.css';
 
 const Row = visComp.Row;
@@ -10,19 +11,26 @@ const Col = visComp.Col;
 
 class ChatBox extends React.Component {
   render() {
+    const {
+      input, onChange, onSubmit, address
+    } = this.props;
     return (
       <div className="chat-box">
         <Row>
           <Col xs={12} sm={12} md={6} lg={6}>
             <form className="sendBar">
-              <input className='inputBar' type="text" value={this.props.input} onChange={this.props.onChange} />
-              <button className='chatButton' type="submit" onClick={this.props.onSubmit}><img src={sendImg} /></button>
-              <button className='chatButton'><img src={attachFile} /></button>
+              <input className='inputBar' type="text" value={input} onChange={onChange} />
+              <button className='chatButton' type="submit" onClick={onSubmit}>
+                <img src={sendImg} alt="send"/>
+              </button>
+              <button className='chatButton'>
+                <img src={attachFile} alt="attach"/>
+              </button>
             </form>
             <div className="messages">
               {
                 this.props.messages.map((messageObj) => {
-                  return messageObj.message;
+                  return <Message key={messageObj.time} message={messageObj} address={address}/>;
                 })
               }
             </div>
@@ -36,6 +44,8 @@ class ChatBox extends React.Component {
 function mapStateToProps(state) {
   return {
     messages: state.chat.messages,
+    user: state.user.user,
+    address: state.user.user.ethereumAddress,
   };
 }
 

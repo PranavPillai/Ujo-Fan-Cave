@@ -2,6 +2,7 @@ import React from 'react';
 import Web3 from 'web3';
 import { connect } from 'react-redux';
 import { setWeb3, setAccount, setValidNetwork, initializeBadgeContract, fetchBadgeContract, getBadgesByAddress } from '../store/web3/actions';
+import { fetchUser } from '../store/user/actions';
 
 const fetchWeb3 = (localProvider = null) => {
   let { web3 } = window;
@@ -40,7 +41,7 @@ class Web3Manager extends React.Component {
       currentAccount, setAccount,
       validNetwork, requiredNetwork, setValidNetwork, 
       badgeContract, initializedBadgeContract, 
-      fetchBadgeContract, getBadgesByAddress } = this.props;
+      fetchBadgeContract, getBadgesByAddress, fetchUser } = this.props;
 
     const web3 = fetchWeb3(localProvider || null);
 
@@ -77,6 +78,7 @@ class Web3Manager extends React.Component {
         await initializeBadgeContract(badgeContract, web3);
         await fetchBadgeContract();
         await getBadgesByAddress(account);
+        await fetchUser(account);
       }
     }
   }
@@ -104,5 +106,6 @@ export default connect(
     setValidNetwork,
     fetchBadgeContract,
     getBadgesByAddress,
+    fetchUser,
   }
 )(Web3Manager);
