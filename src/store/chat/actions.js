@@ -10,19 +10,7 @@ export const dispatchMessage = message => ({type: MESSAGE, message});
 export const sendMessage = (message, room) => async dispatch => {
   const chatRoomRef = firebase.database().ref(room);
   chatRoomRef.push().set(message);
-  dispatch(dispatchMessage(message));
 };
-
-export const getMessages = (room) => async dispatch => {
-  const chatRoomRef = firebase.database().ref(room);
-  chatRoomRef.once('value', (snapshot) => {
-    const messages = snapshot.val();
-    console.log(messages);
-    for(const message in messages) {
-      dispatch(dispatchMessage(messages[message]));
-    }
-  });
-}
 
 export const clearMessages = () => async dispatch => {
   dispatch({type: CLEAR_MESSAGES});
@@ -30,4 +18,9 @@ export const clearMessages = () => async dispatch => {
 
 export const setRoom = (room) => async dispatch => {
   dispatch({type: SET_ROOM, room});
+  const chatRoomRef = firebase.database().ref(room);
+  chatRoomRef.on('child_added', data => {
+    const messageObj = data.val();
+    dispatch(dispatchMessage(messageObj));
+  });
 }
