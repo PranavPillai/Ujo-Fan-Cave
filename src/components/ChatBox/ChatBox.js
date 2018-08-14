@@ -18,8 +18,8 @@ class ChatBox extends React.Component {
               </form>
               <div className="messages">
                 {
-                  this.props.messages.map((message) => {
-                    return message;
+                  this.props.messages.map((messageObj) => {
+                    return messageObj.message;
                   })
                 }
               </div>

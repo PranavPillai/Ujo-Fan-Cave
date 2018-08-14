@@ -41,9 +41,11 @@ class FanPage extends React.Component {
 
   onSubmit(e) {
     e.preventDefault();
-    const message = this.state.input;
+    const messageObj = {
+      message: this.state.input,
+    };
     this.setState({input: ''});
-    this.props.sendMessage(message, this.props.match.params.id);
+    this.props.sendMessage(messageObj, this.props.match.params.id);
   }
 
   renderFanPage() {

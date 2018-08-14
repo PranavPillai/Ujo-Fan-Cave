@@ -10,7 +10,6 @@ import initialState from './initialState';
     case MESSAGE:
       const messagesCopy = state.messages.slice(0);
       messagesCopy.push(action.message);
-      console.log(messagesCopy);
       return Object.assign({}, state, {
         messages: messagesCopy,
       });
