@@ -19,3 +19,4 @@ export const GET_PATRONAGE_BADGES_FAILURE = 'GET_PATRONAGE_BADGES_FAILURE';
 // chat
 export const MESSAGE = 'MESSAGE';
 export const CLEAR_MESSAGES = 'CLEAR_MESSAGES';
+export const SET_ROOM = 'SET_ROOM';

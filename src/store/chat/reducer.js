@@ -1,6 +1,7 @@
 import {
   MESSAGE,
   CLEAR_MESSAGES,
+  SET_ROOM,
 } from '../../constants/ActionTypes';
 
 import initialState from './initialState';
@@ -16,6 +17,11 @@ import initialState from './initialState';
     case CLEAR_MESSAGES: {
       return Object.assign({}, state, {
         messages: [],
+      });
+    }
+    case SET_ROOM: {
+      return Object.assign({}, state, {
+        room: action.room,
       });
     }
     default:

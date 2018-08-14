@@ -1,5 +1,5 @@
 const chatInitialState = {
-  chatRoom: -1,
+  room: -1,
   messages: [],
 }
 

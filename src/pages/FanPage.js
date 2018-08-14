@@ -2,7 +2,7 @@ import React from 'react';
 import visComp from 'ujo-style-guide';
 import ChatBox from '../components/ChatBox/ChatBox';
 import { connect } from 'react-redux';
-import { sendMessage, getMessages, clearMessages } from '../store/chat/actions';
+import { sendMessage, getMessages, clearMessages, setRoom } from '../store/chat/actions';
 import './fanpage.css';
 
 const Row = visComp.Row;
@@ -22,20 +22,17 @@ class FanPage extends React.Component {
   componentDidMount() {
     this.props.clearMessages();
     this.props.getMessages(this.props.match.params.id);
+    this.props.setRoom(this.props.match.params.id);
   }
 
-  componentDidUpdate(props) {
+  componentDidUpdate() {
     const { id } = this.props.match.params;
     if(id !== this.state.room) {
       this.setState({room: id});
       this.props.clearMessages();
       this.props.getMessages(this.props.match.params.id);
+      this.props.setRoom(this.props.match.params.id);
     }
-    console.log(this.state.room, props.match.params.id);
-    // console.log('hey there');
-    // props.clearMessages();
-    // props.getMessages(props.match.params.id);
-    // this.props.setRoom(this.props.match.params.id);
   }
 
   onChange(e) {
@@ -84,5 +81,6 @@ export default connect(
     sendMessage,
     getMessages,
     clearMessages,
+    setRoom,
   }
 )(FanPage);
