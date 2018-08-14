@@ -15,4 +15,4 @@
     padding: 12px 10px; }
 
 .chat-box {
-  height: -webkit-fill-available; }
+  min-height: stretch; }
