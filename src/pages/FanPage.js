@@ -56,7 +56,7 @@ class FanPage extends React.Component {
       <div className="fan-page">
         <Row>
           <Col lg={10} lgOffset={1}>
-            <Menu className="header">
+            <Menu secondary className="header">
               <Menu.Item name={badgeName} />
             </Menu>
             <Row>

@@ -13,11 +13,19 @@ class ChatBox extends React.Component {
   constructor(props) {
     super(props);
 
-    this.onScroll = this.onScroll.bind(this);
+    this.scrollToBottom = this.scrollToBottom.bind(this);
   }
 
-  onScroll() {
+  componentDidMount() {
+    this.scrollToBottom();
+  }
 
+  componentDidUpdate() {
+    this.scrollToBottom();
+  }
+
+  scrollToBottom() {
+    this.messagesEnd.scrollIntoView({behavior: 'smooth'});
   }
 
   render() {
@@ -34,6 +42,7 @@ class ChatBox extends React.Component {
                   return <Message key={messageObj.time} message={messageObj} address={address}/>;
                 })
               }
+              <li style={{float: 'left', clear: 'both', listStyle: 'none',}} ref={(el) => {this.messagesEnd = el; }}/>
             </ul>
             <form className="sendBar">
               <input className='inputBar' type="text" value={input} onChange={onChange} />

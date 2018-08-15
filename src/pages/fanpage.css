@@ -5,7 +5,12 @@
   overflow: hidden;
   background-color: #E5E9EF; }
   .fan-page .ui.header.menu {
-    background-color: #B047B0;
-    border-radius: 0%; }
+    background-color: #6E829D;
+    border-radius: 0%;
+    height: 75px; }
     .fan-page .ui.header.menu .item {
-      color: white; }
+      color: white;
+      border: none;
+      outline: none;
+      left: 40%;
+      position: relative; }
