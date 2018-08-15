@@ -3,6 +3,7 @@ import visComp from 'ujo-style-guide';
 import ChatBox from '../components/ChatBox/ChatBox';
 import { connect } from 'react-redux';
 import { sendMessage, clearMessages, setRoom } from '../store/chat/actions';
+import { Menu } from 'semantic-ui-react';
 import './fanpage.css';
 
 const Row = visComp.Row;
@@ -50,23 +51,21 @@ class FanPage extends React.Component {
     this.props.sendMessage(messageObj, this.props.match.params.id);
   }
 
-  renderFanPage() {
+  renderFanPage(badgeName) {
     return(
       <div className="fan-page">
-        <div className="container">
-          <Row>
-            <Col lg={10} lgOffset={1}>
-              <Row className="section-header">
-                <Col xs={12} sm={12} md={6} lg={6}>
-                  <h1>Fan Page</h1>
-                </Col>
-                <Col xs={12} sm={12} md={6} lg={6}>
-                  <ChatBox input={this.state.input} onChange={this.onChange} onSubmit={this.onSubmit} />
-                </Col>
-              </Row>
-            </Col>
-          </Row>
-        </div>
+        <Row>
+          <Col lg={10} lgOffset={1}>
+            <Menu className="header">
+              <Menu.Item name={badgeName} />
+            </Menu>
+            <Row>
+              <Col xs={12} sm={12} md={6} lg={6}>
+                <ChatBox input={this.state.input} onChange={this.onChange} onSubmit={this.onSubmit} />
+              </Col>
+            </Row>
+          </Col>
+        </Row>
       </div>
     );
   }
@@ -89,14 +88,16 @@ class FanPage extends React.Component {
 
   render() {
     let hasBadge = false;
+    let currBadgeName = '';
     const { badges, room } = this.props;
     for(const badge in badges) {
       if(badge === room) {
         hasBadge = true;
+        currBadgeName = badges[badge].name;
       }
     }
     return hasBadge
-      ? this.renderFanPage()
+      ? this.renderFanPage(currBadgeName)
       : this.renderBadgeNotPurchased()
   }
 }

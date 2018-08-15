@@ -5,6 +5,7 @@ import { Provider } from 'react-redux'
 import store from './store'
 import Web3Manager from './web3/Web3Manager';
 import BadgeContracts from 'ujo-contracts-badges';
+import 'semantic-ui-css/semantic.min.css';
 
 ReactDOM.render(
   <Provider store={store}>

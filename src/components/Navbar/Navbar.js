@@ -1,11 +1,12 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import BadgeList from '../Badges/BadgeList';
+import './styles.css';
 
 class Navbar extends React.Component {
   render() {
     return (
-      <div>
+      <div className="navbar">
         {
           Object.keys(this.props.badges).length > 0 && <BadgeList badges={this.props.badges} />
         }

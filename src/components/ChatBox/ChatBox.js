@@ -10,6 +10,16 @@ const Row = visComp.Row;
 const Col = visComp.Col;
 
 class ChatBox extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.onScroll = this.onScroll.bind(this);
+  }
+
+  onScroll() {
+
+  }
+
   render() {
     const {
       input, onChange, onSubmit, address
@@ -18,6 +28,13 @@ class ChatBox extends React.Component {
       <div className="chat-box">
         <Row>
           <Col xs={12} sm={12} md={6} lg={6}>
+            <ul className="messages" ref="messageList" onScroll={this.onScroll}>
+              {
+                this.props.messages.map((messageObj) => {
+                  return <Message key={messageObj.time} message={messageObj} address={address}/>;
+                })
+              }
+            </ul>
             <form className="sendBar">
               <input className='inputBar' type="text" value={input} onChange={onChange} />
               <button className='chatButton' type="submit" onClick={onSubmit}>
@@ -27,13 +44,6 @@ class ChatBox extends React.Component {
                 <img src={attachFile} alt="attach"/>
               </button>
             </form>
-            <div className="messages">
-              {
-                this.props.messages.map((messageObj) => {
-                  return <Message key={messageObj.time} message={messageObj} address={address}/>;
-                })
-              }
-            </div>
           </Col>
         </Row>
       </div>
