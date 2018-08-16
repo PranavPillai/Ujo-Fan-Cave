@@ -1,4 +1,3 @@
-import _ from 'lodash';
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
@@ -65,7 +64,7 @@ class ChatModal extends React.Component {
       //   <ChatBox input={this.state.input} onChange={this.onChange} onSubmit={this.onSubmit} />
       // </div>
     return (
-      // <Modal open={this.props.isOpen} onClose={this.props.closeModal}>
+      // <Modal open={true} onClose={this.props.closeModal}>
       //   <Modal.Header>Profile Picture</Modal.Header>
       //   <Modal.Content image scrolling>
       //     <Image size='medium' src='https://react.semantic-ui.com/images/wireframe/image.png' wrapped />

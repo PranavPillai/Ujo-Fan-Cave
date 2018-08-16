@@ -1,10 +1,11 @@
 import React from 'react';
 import visComp from 'ujo-style-guide';
-import ChatModal from '../components/Modal/ChatModal';
 import { connect } from 'react-redux';
 import { sendMessage, clearMessages, setRoom } from '../store/chat/actions';
 import { Menu } from 'semantic-ui-react';
 import Navbar from '../components/Navbar/Navbar';
+import ChatModal from '../components/Modal/ChatModal';
+import Dashboard from '../components/Dashboard/Dashboard';
 import cover from '../assets/eaglescover.jpg';
 import './fanpage.css';
 
@@ -93,6 +94,11 @@ class FanPage extends React.Component {
                 <h3 className="badge-count">120 Badges Bought</h3>
               </div>
             </Menu>
+            <Row>
+              <Col xs={12} sm={12} md={6} lg={6}>
+                <Dashboard />
+              </Col>
+            </Row>
             <Row>
               <Col xs={12} sm={12} md={6} lg={6}>
                 <ChatModal 
