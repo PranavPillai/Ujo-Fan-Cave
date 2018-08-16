@@ -29,7 +29,8 @@ import './homepage.css';
     hideFixedMenu = () => this.setState({ fixed: false })
     showFixedMenu = () => this.setState({ fixed: true })
 
-    homepageHeading = () =>   (<Container text>
+    homepageHeading = () =>   (
+    <Container text>
       <Header
         as='h1'
         content='The Beat'

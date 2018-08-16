@@ -23,8 +23,7 @@
     }
 
     &.active, &:hover {
-      background-color: #25375A;
-    }
+      background-image: linear-gradient(to right, #B047B0 0%, #F65A9C 80%);    }
   }
 
   .link {
