@@ -8,6 +8,7 @@ import Navbar from '../components/Navbar/Navbar';
 import ChatModal from '../components/Modal/ChatModal';
 import Dashboard from '../components/Dashboard/Dashboard';
 import cover from '../assets/eaglescover.jpg';
+import sendImg from '../assets/send.png';
 import './fanpage.css';
 
 const Row = visComp.Row;
@@ -47,14 +48,16 @@ class FanPage extends React.Component {
   componentDidUpdate() {
     const { id } = this.props.match.params;
     if(id !== this.state.room) {
-      this.setState({room: id});
+      this.setState({room: id, owner: false,});
       this.props.clearMessages();
       this.props.setRoom(this.props.match.params.id);
     }
     const badge = this.props.badges[this.state.room];
     if(badge) {
       const members = badge.members;
+      console.log(this.props.address);
       for(const member in members) {
+        console.log(members[member].ethereumAddress);
         if(members[member].ethereumAddress === this.props.address) {
           if(!this.state.owner) {
             this.setState({owner : true});
@@ -123,7 +126,9 @@ class FanPage extends React.Component {
                   this.state.owner &&
                   <form>
                     <input type="text" value={this.state.content} onChange={this.changeContent} />
-                    <button type="submit" onClick={this.submitContent}/>
+                    <button type="submit" onClick={this.submitContent}>
+                      <img src={sendImg} alt="attach"/>
+                    </button>
                   </form>
                 }
               </Col>
