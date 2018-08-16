@@ -25,3 +25,6 @@ export const SET_ROOM = 'SET_ROOM';
 export const GET_PERSONA_REQUEST = 'GET_PERSONA_REQUEST';
 export const GET_PERSONA_SUCCESS = 'GET_PERSONA_SUCCESS';
 export const GET_PERSONA_FAILURE = 'GET_PERSONA_FAILURE';
+
+// dashboard content
+export const CONTENT = 'CONTENT';

@@ -2,6 +2,7 @@ import React from 'react';
 import visComp from 'ujo-style-guide';
 import { connect } from 'react-redux';
 import { sendMessage, clearMessages, setRoom } from '../store/chat/actions';
+import { postContent, setDashboardRoom } from '../store/dashboard/actions';
 import { Menu } from 'semantic-ui-react';
 import Navbar from '../components/Navbar/Navbar';
 import ChatModal from '../components/Modal/ChatModal';
@@ -20,11 +21,14 @@ class FanPage extends React.Component {
       room: this.props.match.params.id,
       owner: false,
       modalOpen: false,
+      content: '',
     }
     this.onChange = this.onChange.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
     this.openModal = this.openModal.bind(this);
     this.closeModal = this.closeModal.bind(this);
+    this.submitContent = this.submitContent.bind(this);
+    this.changeContent = this.changeContent.bind(this);
   }
 
   componentDidMount() {
@@ -64,6 +68,10 @@ class FanPage extends React.Component {
     this.setState({input: e.target.value});
   }
 
+  changeContent(e) {
+    this.setState({content: e.target.value});
+  }
+
   onSubmit(e) {
     e.preventDefault();
     const { name, address } = this.props;
@@ -75,6 +83,19 @@ class FanPage extends React.Component {
     };
     this.setState({input: ''});
     this.props.sendMessage(messageObj, this.props.match.params.id);
+  }
+
+  submitContent(e) {
+    e.preventDefault();
+    const { name, address } = this.props;
+    const contentObj = {
+      content: this.state.content,
+      time: Date(),
+      name,
+      address,
+    };
+    this.setState({content: ''});
+    this.props.postContent(contentObj, this.props.match.params.id)
   }
 
   renderFanPage(badgeName) {
@@ -97,13 +118,20 @@ class FanPage extends React.Component {
             <Row>
               <Col xs={12} sm={12} md={6} lg={6}>
                 <Dashboard />
+                {
+                  this.state.owner &&
+                  <form>
+                    <input type="text" value={this.state.content} onChange={this.changeContent} />
+                    <button type="submit" onClick={this.submitContent}/>
+                  </form>
+                }
               </Col>
             </Row>
             <Row>
               <Col xs={12} sm={12} md={6} lg={6}>
-                <ChatModal 
-                  input={this.state.input} 
-                  onChange={this.onChange} 
+                <ChatModal
+                  input={this.state.input}
+                  onChange={this.onChange}
                   onSubmit={this.onSubmit}
                   isOpen={this.state.modalOpen}
                   openModal={this.openModal}
@@ -169,5 +197,6 @@ export default connect(
     sendMessage,
     clearMessages,
     setRoom,
+    postContent
   }
 )(FanPage);
