@@ -33,7 +33,7 @@ class ChatBox extends React.Component {
       input, onChange, onSubmit, address
     } = this.props;
     return (
-      <div className="chat-box">
+      <div className="chat-box modal-content-container">
         <Row>
           <Col xs={12} sm={12} md={6} lg={6}>
             <ul className="messages" ref="messageList" onScroll={this.onScroll}>

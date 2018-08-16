@@ -1,4 +1,5 @@
 .chat-box {
+  padding-top: 250px;
   .messages {
     height: 70vh;
     overflow-y: scroll;
@@ -77,8 +78,6 @@
     border: 3px;
     display: flex;
     flex-direction: row;
-    position: fixed;
-    bottom: 0;
     .inputBar{
       line-height: normal;
       width: 80%;
