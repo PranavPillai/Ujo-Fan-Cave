@@ -1,0 +1,28 @@
+.ui {
+  &.button {
+    &.portal-button {
+      background-color: #FFFFFF;
+      &:hover {
+        background-color: #E5E9EF;
+      }
+    }
+  }
+  &.large {
+    &.inverted {
+      &.pointing {
+        &.menu {
+          &.header-menu {
+            border: none;
+          }
+        }
+      }
+    }
+  }
+  &.vertical {
+    &.segment {
+      &.header-container {
+        background-image: linear-gradient(to right, #9C139C 0%, #F23584 80%);
+      }
+    }
+  }
+}

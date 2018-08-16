@@ -1,0 +1,10 @@
+.ui.button.portal-button {
+  background-color: #FFFFFF; }
+  .ui.button.portal-button:hover {
+    background-color: #E5E9EF; }
+
+.ui.large.inverted.pointing.menu.header-menu {
+  border: none; }
+
+.ui.vertical.segment.header-container {
+  background-image: linear-gradient(to right, #9C139C 0%, #F23584 80%); }

@@ -4,6 +4,7 @@ import ChatBox from '../components/ChatBox/ChatBox';
 import { connect } from 'react-redux';
 import { sendMessage, clearMessages, setRoom } from '../store/chat/actions';
 import { Menu } from 'semantic-ui-react';
+import Navbar from '../components/Navbar/Navbar';
 import './fanpage.css';
 
 const Row = visComp.Row;
@@ -54,6 +55,9 @@ class FanPage extends React.Component {
   renderFanPage(badgeName) {
     return(
       <div className="fan-page">
+        <Col lg={3}>
+          <Navbar />
+        </Col>
         <Row>
           <Col lg={10} lgOffset={1}>
             <Menu secondary className="header">
@@ -74,7 +78,10 @@ class FanPage extends React.Component {
     return (<div className="fan-page">
       <div className="container">
         <Row>
-          <Col lg={10} lgOffset={1}>
+          <Col lg={3}>
+            <Navbar />
+          </Col>
+          <Col lg={9} lgOffset={1}>
             <Row className="section-header">
               <Col xs={12} sm={12} md={6} lg={6}>
                 <h1>Uh Oh! It seems as if you haven't yet purchased this badge!</h1>
