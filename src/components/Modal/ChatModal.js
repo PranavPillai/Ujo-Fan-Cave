@@ -1,3 +1,4 @@
+import _ from 'lodash';
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
@@ -57,9 +58,28 @@ class ChatModal extends React.Component {
   }
 
   render() {
-    return (
-      // <Modal trigger={<Button>Long Modal</Button>}>
+          // <Modal trigger={<Button>Long Modal</Button>}>
       //   <ChatBox input={this.state.input} onChange={this.onChange} onSubmit={this.onSubmit} />
+      // </Modal>
+      // <div>
+      //   <ChatBox input={this.state.input} onChange={this.onChange} onSubmit={this.onSubmit} />
+      // </div>
+    return (
+      // <Modal open={this.props.isOpen} onClose={this.props.closeModal}>
+      //   <Modal.Header>Profile Picture</Modal.Header>
+      //   <Modal.Content image scrolling>
+      //     <Image size='medium' src='https://react.semantic-ui.com/images/wireframe/image.png' wrapped />
+    
+      //     <Modal.Description>
+      //       <Header>Modal Header</Header>
+      //       <p>This is an example of expanded content that will cause the modal's dimmer to scroll</p>
+      //     </Modal.Description>
+      //   </Modal.Content>
+      //   <Modal.Actions>
+      //     <Button primary>
+      //       Proceed <Icon name='chevron right' />
+      //     </Button>
+      //   </Modal.Actions>
       // </Modal>
       <div>
         <ChatBox input={this.state.input} onChange={this.onChange} onSubmit={this.onSubmit} />
