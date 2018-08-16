@@ -1,11 +1,9 @@
-@import "../../../node_modules/ujo-style-guide/src/styles/baseStyles/variables.scss";
-
 .badge-list-container {
 
   .badge-container {
     cursor: pointer;
     height: 120px;
-    color: $text-medium-gray;
+    color: #445D7D;
     font-size: 1.2rem;
     order: 1;
     padding: 20px;
