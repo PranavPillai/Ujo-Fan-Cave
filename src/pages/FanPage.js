@@ -101,6 +101,7 @@ class FanPage extends React.Component {
   renderFanPage(badgeName) {
     const badge = this.props.badges[this.state.room];
     console.log(this.state.owner);
+
     return(
       <div className="fan-page">
         <Col lg={3}>
