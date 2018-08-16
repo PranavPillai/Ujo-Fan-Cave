@@ -2,7 +2,9 @@ import React from 'react'
 import ChatBox from '../ChatBox/ChatBox';
 import { connect } from 'react-redux';
 import { sendMessage, clearMessages, setRoom } from '../../store/chat/actions';
-import { Popover, Tooltip, Button, Modal, OverlayTrigger, } from 'react-bootstrap';
+import { Popover, Tooltip, Modal, OverlayTrigger, } from 'react-bootstrap';
+import { Button, } from 'semantic-ui-react';
+import MessageIcon from '../../assets/messaging-icon.png';
 import './modal.css';
 
 class ChatModal extends React.Component {
@@ -48,22 +50,18 @@ class ChatModal extends React.Component {
 
   render() {
     return (
-      <div>
-        <p>Click to get the full Modal experience!</p>
-
-        <Button bsStyle="primary" bsSize="large" onClick={this.handleShow}>
-          Launch demo modal
-        </Button>
-        <Modal show={this.state.show} onHide={this.handleClose} className="modal">
-          <Modal.Header closeButton>
-            <Modal.Title>Modal heading</Modal.Title>
+      <div className="modal-container">
+        <button bsStyle="primary" bsSize="large" onClick={this.handleShow} className="modal-button">
+          <img src={MessageIcon} alt="message button" className="modal-button-icon" />
+        </button>
+        <Modal show={this.state.show} onHide={this.handleClose}>
+          <Modal.Header className="header">
+            <h2 className="header-text">Community Chat</h2>
+            <Button className="exit-button" onClick={this.handleClose}>x</Button>
           </Modal.Header>
           <Modal.Body>
-            <ChatBox input={this.state.input} onChange={this.onChange} onSubmit={this.onSubmit} />
+            <ChatBox input={this.state.input} onChange={this.onChange} onSubmit={this.onSubmit} open={this.state.show} />
           </Modal.Body>
-          <Modal.Footer>
-            <Button onClick={this.handleClose}>Close</Button>
-          </Modal.Footer>
         </Modal>
       </div>
     );
