@@ -1,32 +1,42 @@
-import React from 'react'
-import ChatBox from '../ChatBox/ChatBox';
+import React from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { sendMessage, clearMessages, setRoom } from '../../store/chat/actions';
-import { Popover, Tooltip, Button, Modal, OverlayTrigger, } from 'react-bootstrap';
+import classNames from 'classnames';
+import { Button, Header, Icon, Image, Modal } from 'semantic-ui-react';
+
+import ChatBox from '../ChatBox/ChatBox';
 import './modal.css';
 
 class ChatModal extends React.Component {
-  constructor(props, context) {
-    super(props, context);
+  static propTypes = {
+    isOpen: PropTypes.bool.isRequired,
+    openModal: PropTypes.func.isRequired,
+    closeModal: PropTypes.func.isRequired,
+  };
 
-    this.handleShow = this.handleShow.bind(this);
-    this.handleClose = this.handleClose.bind(this);
-
+  constructor(props) {
+    super(props);
     this.state = {
-      show: false,
       input: '',
       room: this.props.room,
-    };
+    }
     this.onChange = this.onChange.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
   }
 
-  handleClose() {
-    this.setState({ show: false });
+  componentDidMount() {
+    this.props.clearMessages();
+    this.props.setRoom(this.props.room);
   }
 
-  handleShow() {
-    this.setState({ show: true });
+  componentDidUpdate() {
+    const { room } = this.props;
+    if(room !== this.state.room) {
+      this.setState({ room });
+      this.props.clearMessages();
+      this.props.setRoom(room);
+    }
   }
 
   onChange(e) {
@@ -59,7 +69,7 @@ class ChatModal extends React.Component {
             <Modal.Title>Modal heading</Modal.Title>
           </Modal.Header>
           <Modal.Body>
-            <ChatBox input={this.state.input} onChange={this.onChange} onSubmit={this.onSubmit} />
+          <ChatBox input={this.state.input} onChange={this.onChange} onSubmit={this.onSubmit} />
           </Modal.Body>
           <Modal.Footer>
             <Button onClick={this.handleClose}>Close</Button>
