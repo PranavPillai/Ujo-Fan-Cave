@@ -30,7 +30,7 @@ class ChatBox extends React.Component {
 
   render() {
     const {
-      input, onChange, onSubmit, address
+      input, onChange, onSubmit, address, onFileUpload
     } = this.props;
     return (
       <div className="chat-box">
@@ -46,11 +46,9 @@ class ChatBox extends React.Component {
             </ul>
             <form className="sendBar">
               <input className='inputBar' type="text" value={input} onChange={onChange} />
+              <input type='file' value={input} onChange={onFileUpload}/>
               <button className='chatButton' type="submit" onClick={onSubmit}>
                 <img src={sendImg} alt="send"/>
-              </button>
-              <button className='chatButton'>
-                <img src={attachFile} alt="attach"/>
               </button>
             </form>
           </Col>

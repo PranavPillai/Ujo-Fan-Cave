@@ -19,6 +19,7 @@ class FanPage extends React.Component {
     }
     this.onChange = this.onChange.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
+    this.onFileUpload = this.onFileUpload.bind(this);
   }
 
   componentDidMount() {
@@ -52,6 +53,22 @@ class FanPage extends React.Component {
     this.props.sendMessage(messageObj, this.props.match.params.id);
   }
 
+  onFileUpload(e) {
+    e.preventDefault();
+    //const data = new FormData();
+    //data.append();
+    //data.append();
+    const { name, address } = this.props;
+    const messageObj = {
+      time: Date(),
+      name,
+      address,
+      image: this.state.input,
+    };
+    console.log(this.state.input);
+    this.props.sendMessage(messageObj, this.props.match.params.id);
+  }
+
   renderFanPage(badgeName) {
     return(
       <div className="fan-page">
@@ -65,7 +82,7 @@ class FanPage extends React.Component {
             </Menu>
             <Row>
               <Col xs={12} sm={12} md={6} lg={6}>
-                <ChatBox input={this.state.input} onChange={this.onChange} onSubmit={this.onSubmit} />
+                <ChatBox input={this.state.input} onChange={this.onChange} onSubmit={this.onSubmit} onFileUpload={this.onFileUpload}/>
               </Col>
             </Row>
           </Col>
