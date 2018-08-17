@@ -120,7 +120,7 @@ class HomePage extends React.Component {
             Connecting Artists and Fans like Never Before
           </Header>
           <p style={{ fontSize: '1.33em' }}>
-            The Beat is your home to connect with your favorite artist,
+            The Beat is your home to connect with your favorite artists,
             where super-fans like yourself can be rewarded with exclusive content & deals,
             and can chat with people as passionate about music as they are. 
           </p>
@@ -132,13 +132,13 @@ class HomePage extends React.Component {
           >
           </Divider>
           <Header as='h3' style={{ fontSize: '2em' }}>
-            Powered by the Blockchain
+            Powered by Blockchain
           </Header>
           <p style={{ fontSize: '1.33em' }}>
             Built using Ujo Music's decentralized music registry, The Beat supports 
-            unencumbered musicians, eager to break the shackles of the music industry. 
+            unencumbered musicians who want full ownership of their releases. 
             Through smart-contracts on the Ethereum Blockchain, Ujo helps artists control
-            their intellectual property without paying a huge cut to centralized distribution channels. 
+            their intellectual property without paying a cut to centralized distribution channels. 
           </p>
           <Divider
             as='h4'
