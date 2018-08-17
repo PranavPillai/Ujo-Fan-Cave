@@ -60,7 +60,6 @@
     "immutable": "^3.8.2",
     "lodash": "^4.17.10",
     "react": "^15.4.2",
-    "react-bootstrap": "^0.32.1",
     "react-dom": "^15.4.2",
     "react-loading-indicator": "^1.0.2",
     "react-redux": "^5.0.6",
