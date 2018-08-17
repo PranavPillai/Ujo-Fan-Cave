@@ -1,6 +1,6 @@
 
 let HOSTNAME = window && window.location && window.location.hostname;
-let API = '/api';
+let API = 'https://www.dev.ujomusic.com/api';
 let IMAGE_PROXY = '/image';
 const subdomain = window.location.host.indexOf('dev') > -1 ? 'dev.' : '';
 
