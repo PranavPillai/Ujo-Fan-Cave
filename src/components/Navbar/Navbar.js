@@ -8,7 +8,7 @@ class Navbar extends React.Component {
     return (
       <div className="navbar">
         <div className="header-container">
-          <h5 className="header">The Beat</h5>
+          <h5 className="header">THE BEAT</h5>
           <sup className="header-subtext">An Ujo Formation</sup>
         </div>
         {

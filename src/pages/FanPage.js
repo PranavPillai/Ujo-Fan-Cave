@@ -7,7 +7,7 @@ import { Menu } from 'semantic-ui-react';
 import Navbar from '../components/Navbar/Navbar';
 import ChatModal from '../components/Modal/ChatModal';
 import Dashboard from '../components/Dashboard/Dashboard';
-import cover from '../assets/eaglescover.jpg';
+import cover from '../assets/concertCover.jpg';
 import sendImg from '../assets/send.png';
 import './fanpage.css';
 

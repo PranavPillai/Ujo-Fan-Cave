@@ -1,9 +1,10 @@
+@import url('https://fonts.googleapis.com/css?family=Oswald');
 .badge-list-container {
-
+  font-family: 'Oswald', sans-serif;
   .badge-container {
     cursor: pointer;
     height: 120px;
-    color: #445D7D;
+    color: black;
     font-size: 1.6rem;
     order: 1;
     padding: 20px;
@@ -17,11 +18,12 @@
     .badge-name {
       float: right;
       padding-top: 20px;
-      color: white;
+      color: black;
     }
 
     &.active, &:hover {
-      background-image: linear-gradient(to right, #B047B0 0%, #F65A9C 80%);    }
+      background-color: #E5E9EF;
+    }
   }
 
   .link {
