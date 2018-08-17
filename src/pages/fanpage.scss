@@ -10,7 +10,6 @@
     .input-container {
       display: flex;
       flex-direction: row;
-      margin-left: 150px;
       width: 60vw;  
     }
   }
@@ -32,7 +31,13 @@
     width: 100%;
     margin-bottom: 50px;
     .group-name {
-      padding-left: 40px;
+      padding-left: 20px;
+      font-size: 2.2em;
+      background-color: rgba(255, 255, 255, .2);
+      height: fit-content;
+      padding-right: 20px;
+      padding-bottom: 10px;
+      padding-top: 10px;
     }
     .badge-count {
       float: right;
@@ -40,6 +45,13 @@
       margin-top: 8px;
       position: absolute;
       right: 5px;
+      padding-left: 20px;
+      font-size: 1.2em;
+      background-color: rgba(255, 255, 255, .2);
+      height: fit-content;
+      padding-right: 20px;
+      padding-bottom: 10px;
+      padding-top: 10px;
     }
   }
   .ui.header.menu {
@@ -52,5 +64,8 @@
       left: 40%;
       position: relative;
     }
+  }
+  .welcome-owner {
+    margin-left: 15%;
   }
 }

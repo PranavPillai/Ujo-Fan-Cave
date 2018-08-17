@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { sendMessage, clearMessages, setRoom } from '../store/chat/actions';
 import { postContent, clearContent, contentListener } from '../store/dashboard/actions';
 import { Form, Button } from 'semantic-ui-react';
-import { Menu } from 'semantic-ui-react';
+import { Menu, Message } from 'semantic-ui-react';
 import Navbar from '../components/Navbar/Navbar';
 import ChatModal from '../components/Modal/ChatModal';
 import Dashboard from '../components/Dashboard/Dashboard';
@@ -24,6 +24,7 @@ class FanPage extends React.Component {
       owner: false,
       modalOpen: false,
       content: '',
+      closeMessage: false,
     }
     this.onChange = this.onChange.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
@@ -31,6 +32,7 @@ class FanPage extends React.Component {
     this.closeModal = this.closeModal.bind(this);
     this.submitContent = this.submitContent.bind(this);
     this.changeContent = this.changeContent.bind(this);
+    this.dismissMessage = this.dismissMessage.bind(this);
   }
 
   componentDidMount() {
@@ -106,17 +108,35 @@ class FanPage extends React.Component {
     this.props.postContent(contentObj, this.props.match.params.id)
   }
 
+  dismissMessage() {
+    this.setState({closeMessage: true,})
+  }
+
   renderFanPage(badgeName) {
     const badge = this.props.badges[this.state.room];
     const postInput =
-    (<Form className="sendBar">
-      <Form.Field className="input-container" onSubmit={this.submitContent}>
-        <input className='inputBar' type="text" value={this.state.content} onChange={this.changeContent} />
-        <Button basic color='pink' className='chatButton' type="submit" onClick={this.submitContent}>
-          <img src={sendImg} alt="send"/>
-        </Button>
-      </Form.Field>
-    </Form>);
+    (
+    <div className="welcome-owner">
+      {!this.state.closeMessage && (
+      <Message positive floating onDismiss={this.dismissMessage} 
+        style={
+          {position: "absolute", top: "500px", "z-index": 100, width: "60%", "margin-left": "auto", "margin-right": 0}
+        }>
+        <Message.Header>Welcome {badge.name}!</Message.Header>
+        <p>
+          Click the red button to open the post submission form!
+        </p>
+      </Message>)}
+      <Form className="sendBar">
+        <Form.Field className="input-container" onSubmit={this.submitContent}>
+          <input className='inputBar' type="text" value={this.state.content} onChange={this.changeContent} />
+          <Button basic color='pink' className='chatButton' type="submit" onClick={this.submitContent}>
+            <img src={sendImg} alt="send"/>
+          </Button>
+        </Form.Field>
+      </Form>
+    </div>
+    );
 
     return(
       <div className="fan-page">
@@ -143,7 +163,6 @@ class FanPage extends React.Component {
                 {
                   this.state.owner && postInput
                 }
-
               </Col>
             </Row>
             <Row>

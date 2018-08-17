@@ -51,13 +51,13 @@ class Dashboard extends React.Component {
               <h4 className="exclusive-subheader">Where your favorite artist can personally post exclusive music, performances, and merch!</h4>
             </div></Segment>
             <ul className="contents-container" ref="contentList">
-              <Button className="nav-btn prev" disabled={this.state.currIndex === 0} onClick={this.decreaseIndex}>Prev</Button>
+              {this.props.contents.length > 0 && <Button className="nav-btn prev" disabled={this.state.currIndex === 0} onClick={this.decreaseIndex}>Prev</Button>}
               {
                 this.props.contents.map((contentObj, i) => {
                   return <Content key={contentObj.time} content={contentObj} address={address} notHidden={this.state.currIndex === i}/>;
                 })
               }
-              <Button className="nav-btn next" disabled={this.state.currIndex === this.state.currLength-1} onClick={this.increaseIndex}>Next</Button>
+              {this.props.contents.length > 0 && <Button className="nav-btn next" disabled={this.state.currIndex === this.state.currLength-1} onClick={this.increaseIndex}>Next</Button>}
             </ul>
           </Col>
         </Row>
