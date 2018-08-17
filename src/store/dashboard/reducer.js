@@ -1,11 +1,11 @@
 import {
-  CONTENT,
+  POST_CONTENT,
 } from '../../constants/ActionTypes';
 
 import initialState from './initialState';
  const reducer = (state = initialState, action) => {
   switch(action.type) {
-    case CONTENT
+    case POST_CONTENT
       const contentCopy = state.content.slice(0);
       contentCopy.push(action.content);
       return Object.assign({}, state, {

@@ -55,9 +55,7 @@ class FanPage extends React.Component {
     const badge = this.props.badges[this.state.room];
     if(badge) {
       const members = badge.members;
-      console.log(this.props.address);
       for(const member in members) {
-        console.log(members[member].ethereumAddress);
         if(members[member].ethereumAddress === this.props.address) {
           if(!this.state.owner) {
             this.setState({owner : true});
@@ -104,6 +102,13 @@ class FanPage extends React.Component {
   renderFanPage(badgeName) {
     const badge = this.props.badges[this.state.room];
     console.log(this.state.owner);
+    const dashboard =
+    <form>
+      <input type="text" value={this.state.content} onChange={this.changeContent} />
+      <button type="submit" onClick={this.submitContent}>
+        <img src={sendImg} alt="attach"/>
+      </button>
+    </form>
 
     return(
       <div className="fan-page">
@@ -123,13 +128,7 @@ class FanPage extends React.Component {
               <Col xs={12} sm={12} md={6} lg={6}>
                 <Dashboard />
                 {
-                  this.state.owner &&
-                  <form>
-                    <input type="text" value={this.state.content} onChange={this.changeContent} />
-                    <button type="submit" onClick={this.submitContent}>
-                      <img src={sendImg} alt="attach"/>
-                    </button>
-                  </form>
+                  this.state.owner && dashboard
                 }
               </Col>
             </Row>

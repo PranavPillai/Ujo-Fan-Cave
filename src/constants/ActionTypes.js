@@ -27,4 +27,4 @@ export const GET_PERSONA_SUCCESS = 'GET_PERSONA_SUCCESS';
 export const GET_PERSONA_FAILURE = 'GET_PERSONA_FAILURE';
 
 // dashboard content
-export const CONTENT = 'CONTENT';
+export const POST_CONTENT = 'POST_CONTENT';
