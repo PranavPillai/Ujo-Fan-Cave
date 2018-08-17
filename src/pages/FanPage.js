@@ -10,6 +10,7 @@ import ChatModal from '../components/Modal/ChatModal';
 import SubmitPostModal from '../components/Modal/SubmitPostModal';
 import Dashboard from '../components/Dashboard/Dashboard';
 import cover from '../assets/concertCover.jpg';
+import handsCover from '../assets/concert_hands_cover.jpg';
 import sendImg from '../assets/send.png';
 import './fanpage.css';
 
@@ -139,7 +140,9 @@ class FanPage extends React.Component {
       </Message>)}
     </div>
     );
-
+    console.log(this.state.room);
+    const chooseCover = this.state.room === '1' ? cover : handsCover;
+    const numBadges = this.state.room === '1' ? 120 : 25;
     return(
       <div className="fan-page">
         <Col lg={3}>
@@ -148,10 +151,10 @@ class FanPage extends React.Component {
         <Row>
           <Col lg={10} lgOffset={1}>
             <Menu secondary>
-              <img name={badgeName} src={cover} alt="banner" className="banner" />
+              <img name={badgeName} src={chooseCover} alt="banner" className="banner" />
               <div className="banner-text-container">
                 <h2 className="group-name">{badge.name}</h2>
-                <h3 className="badge-count">120 Badges Bought</h3>
+                <h3 className="badge-count">{numBadges} Badges Bought</h3>
               </div>
             </Menu>
             <Row>
