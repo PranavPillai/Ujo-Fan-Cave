@@ -62,14 +62,10 @@
   border: 3px;
   display: flex;
   flex-direction: row; }
-  .chat-box .sendBar .inputBar {
-    line-height: normal;
-    width: 80%;
-    float: left;
-    padding: 12px 10px; }
-    .chat-box .sendBar .inputBar:focus {
-      outline: none;
-      outline-offset: none; }
+  .chat-box .sendBar .input-container {
+    width: 100%;
+    display: flex;
+    flex-direction: row; }
   .chat-box .sendBar .chatButton {
     width: 10%;
     padding: 12px 10px;

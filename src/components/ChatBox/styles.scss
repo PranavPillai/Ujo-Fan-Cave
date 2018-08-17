@@ -77,15 +77,10 @@
     border: 3px;
     display: flex;
     flex-direction: row;
-    .inputBar{
-      line-height: normal;
-      width: 80%;
-      float: left;
-      padding: 12px 10px;
-      &:focus {
-        outline: none;
-        outline-offset: none;
-      }
+    .input-container {
+      width: 100%;
+      display: flex;
+      flex-direction: row;
     }
   
     .chatButton{

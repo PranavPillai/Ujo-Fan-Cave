@@ -1,5 +1,6 @@
 import React from 'react';
 import visComp from 'ujo-style-guide';
+import { Form, Button } from 'semantic-ui-react';
 import { connect } from 'react-redux';
 import sendImg from '../../assets/send.png';
 import Message from './Message';
@@ -46,12 +47,14 @@ class ChatBox extends React.Component {
               }
               <li style={{float: 'left', clear: 'both', listStyle: 'none',}} ref={(el) => {this.messagesEnd = el; }}/>
             </ul>
-            <form className="sendBar">
-              <input className='inputBar' type="text" value={input} onChange={onChange} />
-              <button className='chatButton' type="submit" onClick={onSubmit}>
-                <img src={sendImg} alt="send"/>
-              </button>
-            </form>
+            <Form className="sendBar">
+              <Form.Field className="input-container" onSubmit={onSubmit}>
+                <input className='inputBar' type="text" value={input} onChange={onChange} />
+                <Button color='purple' className='chatButton' type="submit" onClick={onSubmit}>
+                  <img src={sendImg} alt="send"/>
+                </Button>
+              </Form.Field>
+            </Form>
           </Col>
         </Row>
       </div>
