@@ -2,7 +2,7 @@ import React from 'react';
 import visComp from 'ujo-style-guide';
 import { connect } from 'react-redux';
 import { sendMessage, clearMessages, setRoom } from '../store/chat/actions';
-import { postContent, setDashboardRoom } from '../store/dashboard/actions';
+import { postContent, clearContent, contentListener } from '../store/dashboard/actions';
 import { Menu } from 'semantic-ui-react';
 import Navbar from '../components/Navbar/Navbar';
 import ChatModal from '../components/Modal/ChatModal';
@@ -35,6 +35,10 @@ class FanPage extends React.Component {
   componentDidMount() {
     this.props.clearMessages();
     this.props.setRoom(this.props.match.params.id);
+    if (this.state.owner) {
+      this.props.clearContent();
+      this.props.contentListener(this.state.room+'-dashboard');
+    }
   }
 
   openModal() {
@@ -51,6 +55,7 @@ class FanPage extends React.Component {
       this.setState({room: id, owner: false,});
       this.props.clearMessages();
       this.props.setRoom(this.props.match.params.id);
+      this.props.clearContent();
     }
     const badge = this.props.badges[this.state.room];
     if(badge) {
@@ -202,6 +207,8 @@ export default connect(
     sendMessage,
     clearMessages,
     setRoom,
-    postContent
+    postContent,
+    clearContent,
+    contentListener
   }
 )(FanPage);

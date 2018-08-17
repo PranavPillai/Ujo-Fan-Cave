@@ -28,3 +28,4 @@ export const GET_PERSONA_FAILURE = 'GET_PERSONA_FAILURE';
 
 // dashboard content
 export const POST_CONTENT = 'POST_CONTENT';
+export const CLEAR_CONTENT = 'CLEAR_CONTENT';
