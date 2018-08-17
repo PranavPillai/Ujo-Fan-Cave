@@ -17,8 +17,11 @@ const Routes = () => {
         <Col lg={12}>
           <Switch>
             <Route exact path={'/'} component={HomePage} />
+            <Route exact path={baseURL + '/'} component={HomePage} />
             <Route exact path={'/pages/'} component={() => <FanPageGeneric />} />
+            <Route exact path={baseURL + '/pages/'} component={() => <FanPageGeneric />} />
             <Route path={'/pages/:id'} component={FanPage} />
+            <Route path={baseURL + '/pages/:id'} component={FanPage} />
           </Switch>
         </Col>
       </Row>
