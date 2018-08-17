@@ -23,8 +23,8 @@ body::-webkit-scrollbar-track {
     margin-top: 20px; }
   .navbar .header-container {
     padding-left: 20px;
-    padding-top: 5px;
-    height: 75px;
+    padding-top: 15px;
+    height: 100px;
     background-image: linear-gradient(to right, #9C139C 0%, #F23584 80%);
     width: 100%;
     color: white; }
