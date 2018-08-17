@@ -81,6 +81,9 @@
       width: 100%;
       display: flex;
       flex-direction: row;
+      .inputBar {
+        border-color: #D13477;
+      }
     }
   
     .chatButton{

@@ -66,6 +66,8 @@
     width: 100%;
     display: flex;
     flex-direction: row; }
+    .chat-box .sendBar .input-container .inputBar {
+      border-color: #D13477; }
   .chat-box .sendBar .chatButton {
     width: 10%;
     padding: 12px 10px;

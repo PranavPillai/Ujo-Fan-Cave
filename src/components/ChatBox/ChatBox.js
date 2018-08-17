@@ -50,7 +50,7 @@ class ChatBox extends React.Component {
             <Form className="sendBar">
               <Form.Field className="input-container" onSubmit={onSubmit}>
                 <input className='inputBar' type="text" value={input} onChange={onChange} />
-                <Button color='purple' className='chatButton' type="submit" onClick={onSubmit}>
+                <Button basic color='pink' className='chatButton' type="submit" onClick={onSubmit}>
                   <img src={sendImg} alt="send"/>
                 </Button>
               </Form.Field>
