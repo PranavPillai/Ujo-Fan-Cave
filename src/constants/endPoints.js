@@ -21,7 +21,7 @@ if (subdomain === 'dev.') {
 let ethScan = 'https://etherscan.io';
 
 if (process.env.REACT_APP_ENV === 'local') { // local serves local go server
-  API = 'https://www.dev.ujomusic.com/api';
+  API = 'localhost:9001/api';
   IMAGE_PROXY = 'https://www.dev.ujomusic.com/image';
   // TODO: add back for dev version of proxy server
   // subdomain = 'dev.';

@@ -34,7 +34,7 @@ module.exports = {
   // Changed from build to build_webpack so smart contract compilations are not overwritten.
   appBuild: resolveApp('build_webpack'),
   appPublic: resolveApp('public'),
-  appHtml: resolveApp('public/index.html'),
+  appHtml: resolveApp('../index.html'),
   appIndexJs: resolveApp('src/index.js'),
   appPackageJson: resolveApp('package.json'),
   appSrc: resolveApp('src'),
