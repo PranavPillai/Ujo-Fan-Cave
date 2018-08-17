@@ -25,7 +25,7 @@ class Dashboard extends React.Component {
   }
 
   componentDidUpdate(props) {
-    if(props.contents.length != this.state.currLength) {
+    if(props.contents.length !== this.state.currLength) {
       this.setState({currLength: props.contents.length});
     }
   }

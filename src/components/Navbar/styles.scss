@@ -18,6 +18,7 @@ body::-webkit-scrollbar-track {
   flex-direction: column;
   //background-image: linear-gradient(to right, grey 0%, white 80%);
   //background-color: #E5E9EF;
+  overflow-y: scroll;
   background-color: white;
   box-shadow: 0px 0px 5px rgba(128, 128, 128, 0.4);
 
