@@ -4,11 +4,13 @@ import { connect } from 'react-redux';
 import { sendMessage, clearMessages, setRoom } from '../store/chat/actions';
 import { postContent, clearContent, contentListener } from '../store/dashboard/actions';
 import { Form, Button } from 'semantic-ui-react';
-import { Menu } from 'semantic-ui-react';
+import { Menu, Message } from 'semantic-ui-react';
 import Navbar from '../components/Navbar/Navbar';
 import ChatModal from '../components/Modal/ChatModal';
+import SubmitPostModal from '../components/Modal/SubmitPostModal';
 import Dashboard from '../components/Dashboard/Dashboard';
 import cover from '../assets/concertCover.jpg';
+import handsCover from '../assets/concert_hands_cover.jpg';
 import sendImg from '../assets/send.png';
 import './fanpage.css';
 
@@ -23,7 +25,9 @@ class FanPage extends React.Component {
       room: this.props.match.params.id,
       owner: false,
       modalOpen: false,
+      submitModalOpen: false,
       content: '',
+      closeMessage: false,
     }
     this.onChange = this.onChange.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
@@ -31,6 +35,7 @@ class FanPage extends React.Component {
     this.closeModal = this.closeModal.bind(this);
     this.submitContent = this.submitContent.bind(this);
     this.changeContent = this.changeContent.bind(this);
+    this.dismissMessage = this.dismissMessage.bind(this);
   }
 
   componentDidMount() {
@@ -48,6 +53,14 @@ class FanPage extends React.Component {
 
   closeModal() {
     this.setState({modalOpen : false});
+  }
+
+  openSubmitModal() {
+    this.setState({submitmodalOpen : true});
+  }
+
+  closeSubmitModal() {
+    this.setState({submitmodalOpen : false});
   }
 
   componentDidUpdate() {
@@ -106,18 +119,30 @@ class FanPage extends React.Component {
     this.props.postContent(contentObj, this.props.match.params.id)
   }
 
+  dismissMessage() {
+    this.setState({closeMessage: true,})
+  }
+
   renderFanPage(badgeName) {
     const badge = this.props.badges[this.state.room];
     const postInput =
-    (<Form className="sendBar">
-      <Form.Field className="input-container" onSubmit={this.submitContent}>
-        <input className='inputBar' type="text" value={this.state.content} onChange={this.changeContent} />
-        <Button basic color='pink' className='chatButton' type="submit" onClick={this.submitContent}>
-          <img src={sendImg} alt="send"/>
-        </Button>
-      </Form.Field>
-    </Form>);
-
+    (
+    <div className="welcome-owner">
+      {!this.state.closeMessage && (
+      <Message positive floating onDismiss={this.dismissMessage} 
+        style={
+          {position: "absolute", top: "500px", "z-index": 100, width: "60%", "margin-left": "auto", "margin-right": 0}
+        }>
+        <Message.Header>Welcome {badge.name}!</Message.Header>
+        <p>
+          Click the red button to open the post submission form!
+        </p>
+      </Message>)}
+    </div>
+    );
+    console.log(this.state.room);
+    const chooseCover = this.state.room === '1' ? cover : handsCover;
+    const numBadges = this.state.room === '1' ? 120 : 25;
     return(
       <div className="fan-page">
         <Col lg={3}>
@@ -126,10 +151,10 @@ class FanPage extends React.Component {
         <Row>
           <Col lg={10} lgOffset={1}>
             <Menu secondary>
-              <img name={badgeName} src={cover} alt="banner" className="banner" />
+              <img name={badgeName} src={chooseCover} alt="banner" className="banner" />
               <div className="banner-text-container">
                 <h2 className="group-name">{badge.name}</h2>
-                <h3 className="badge-count">120 Badges Bought</h3>
+                <h3 className="badge-count">{numBadges} Badges Bought</h3>
               </div>
             </Menu>
             <Row>
@@ -143,7 +168,6 @@ class FanPage extends React.Component {
                 {
                   this.state.owner && postInput
                 }
-
               </Col>
             </Row>
             <Row>
@@ -156,6 +180,17 @@ class FanPage extends React.Component {
                   openModal={this.openModal}
                   closeModal={this.closeModal}
                   room={this.state.room}
+                />
+              </Col>
+            </Row>
+            <Row>
+              <Col xs={12} sm={12} md={6} lg={6}>
+                <SubmitPostModal
+                  isOpen={this.state.submitModalOpen}
+                  openModal={this.openSubmitModal}
+                  closeModal={this.closeSubmitModal}
+                  room={this.state.room}
+                  owner={this.state.owner}
                 />
               </Col>
             </Row>

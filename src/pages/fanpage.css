@@ -8,7 +8,6 @@
   .fan-page .ui.form.sendBar .input-container {
     display: flex;
     flex-direction: row;
-    margin-left: 150px;
     width: 60vw; }
   .fan-page .banner {
     position: absolute;
@@ -24,15 +23,29 @@
     flex-direction: row;
     height: 100px;
     line-height: 100px;
-    width: 100%; }
+    width: 100%;
+    margin-bottom: 50px; }
     .fan-page .banner-text-container .group-name {
-      padding-left: 40px; }
+      padding-left: 20px;
+      font-size: 2.2em;
+      background-color: rgba(255, 255, 255, 0.2);
+      height: fit-content;
+      padding-right: 20px;
+      padding-bottom: 10px;
+      padding-top: 10px; }
     .fan-page .banner-text-container .badge-count {
       float: right;
       padding-right: 40px;
       margin-top: 8px;
       position: absolute;
-      right: 5px; }
+      right: 5px;
+      padding-left: 20px;
+      font-size: 1.2em;
+      background-color: rgba(255, 255, 255, 0.2);
+      height: fit-content;
+      padding-right: 20px;
+      padding-bottom: 10px;
+      padding-top: 10px; }
   .fan-page .ui.header.menu {
     border-radius: 0%;
     height: 300px; }
@@ -42,3 +55,5 @@
       outline: none;
       left: 40%;
       position: relative; }
+  .fan-page .welcome-owner {
+    margin-left: 15%; }
