@@ -51,9 +51,9 @@ class SubmitPostModal extends React.Component {
   render() {
     return (
       <div className="modal-container">
-        <button bsStyle="primary" bsSize="large" onClick={this.handleShow} className="submit-modal-button">
+      {(this.props.owner && <button bsStyle="primary" bsSize="large" onClick={this.handleShow} className="submit-modal-button">
           <img src={PencilIcon} alt="message button" className="modal-button-icon" />
-        </button>
+        </button>)}
         <Modal show={this.state.show} onHide={this.handleClose}>
           <Modal.Header className="header">
             <h2 className="header-text">Post For Your Fans!</h2>

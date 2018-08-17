@@ -187,6 +187,7 @@ class FanPage extends React.Component {
                   openModal={this.openSubmitModal}
                   closeModal={this.closeSubmitModal}
                   room={this.state.room}
+                  owner={this.state.owner}
                 />
               </Col>
             </Row>
