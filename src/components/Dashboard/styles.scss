@@ -1,0 +1,80 @@
+.chat-box {
+  .messages {
+    height: 70vh;
+    overflow-y: scroll;
+    width: 80vw;
+    .message-container {
+      display: flex;
+      flex-direction: row;
+      .message-image {
+        border-radius: 50%;
+        margin-right: 15px;
+        width: 40px;
+        height: 40px;
+        &.user_sent {
+          float: right;
+          order: 1;
+          margin-left: 10px;
+        }
+      }
+      .content {
+        padding-bottom: 10px;
+        border-radius: 5px;
+        box-shadow: 0 0 6px #B2B2B2;
+        display: inline-block;
+        padding: 10px 18px;
+        position: relative;
+        vertical-align: top;
+        width: 60%;
+
+        &.user_sent {
+          float: right;
+          margin: 5px 20px 5px 45px;
+          background-color: #D13477;
+          text-align: right;
+          color: white;
+        }
+
+        &.user_sent::before {
+            background-color: #D13477;
+            box-shadow: 2px -2px 2px 0 rgba( 178, 178, 178, .4 );
+            right: -9px;
+        }
+      }
+
+      .content::before {
+          content: "\00a0";
+          display: block;
+          height: 16px;
+          position: absolute;
+          top: 11px;
+          transform:             rotate( 29deg ) skew( -35deg );
+              -moz-transform:    rotate( 29deg ) skew( -35deg );
+              -ms-transform:     rotate( 29deg ) skew( -35deg );
+              -o-transform:      rotate( 29deg ) skew( -35deg );
+              -webkit-transform: rotate( 29deg ) skew( -35deg );
+          width:  20px;
+      }
+    }
+  }
+  .sendBar {
+    width: 100%;
+    border: 3px;
+    display: flex;
+    flex-direction: row;
+    .input-container {
+      width: 100%;
+      display: flex;
+      flex-direction: row;
+      .inputBar {
+        border-color: #D13477;
+      }
+    }
+
+    .chatButton{
+      width: 10%;
+      padding: 12px 10px;
+      float: right;
+    }
+  }
+}

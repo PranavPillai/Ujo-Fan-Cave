@@ -2,7 +2,8 @@ import React from 'react';
 import visComp from 'ujo-style-guide';
 import { connect } from 'react-redux';
 import { sendMessage, clearMessages, setRoom } from '../store/chat/actions';
-import { postContent, setDashboardRoom } from '../store/dashboard/actions';
+import { postContent, clearContent, contentListener } from '../store/dashboard/actions';
+import { Form, Button } from 'semantic-ui-react';
 import { Menu } from 'semantic-ui-react';
 import Navbar from '../components/Navbar/Navbar';
 import ChatModal from '../components/Modal/ChatModal';
@@ -35,6 +36,10 @@ class FanPage extends React.Component {
   componentDidMount() {
     this.props.clearMessages();
     this.props.setRoom(this.props.match.params.id);
+    this.props.contentListener(this.state.room);
+    if (this.state.owner) {
+      this.props.clearContent();
+    }
   }
 
   openModal() {
@@ -50,7 +55,9 @@ class FanPage extends React.Component {
     if(id !== this.state.room) {
       this.setState({room: id, owner: false,});
       this.props.clearMessages();
-      this.props.setRoom(this.props.match.params.id);
+      this.props.setRoom(id);
+      this.props.clearContent();
+      this.props.contentListener(id);
     }
     const badge = this.props.badges[this.state.room];
     if(badge) {
@@ -102,13 +109,15 @@ class FanPage extends React.Component {
   renderFanPage(badgeName) {
     const badge = this.props.badges[this.state.room];
     console.log(this.state.owner);
-    const dashboard =
-    <form>
-      <input type="text" value={this.state.content} onChange={this.changeContent} />
-      <button type="submit" onClick={this.submitContent}>
-        <img src={sendImg} alt="attach"/>
-      </button>
-    </form>
+    const postInput =
+    (<Form className="sendBar">
+      <Form.Field className="input-container" onSubmit={this.submitContent}>
+        <input className='inputBar' type="text" value={this.state.content} onChange={this.changeContent} />
+        <Button basic color='pink' className='chatButton' type="submit" onClick={this.submitContent}>
+          <img src={sendImg} alt="send"/>
+        </Button>
+      </Form.Field>
+    </Form>);
 
     return(
       <div className="fan-page">
@@ -126,10 +135,15 @@ class FanPage extends React.Component {
             </Menu>
             <Row>
               <Col xs={12} sm={12} md={6} lg={6}>
-                <Dashboard />
+                <Dashboard
+                  input={this.state.content}
+                  onChange={this.changeContent}
+                  onSubmit={this.submitContent}
+                />
                 {
-                  this.state.owner && dashboard
+                  this.state.owner && postInput
                 }
+
               </Col>
             </Row>
             <Row>
@@ -202,6 +216,8 @@ export default connect(
     sendMessage,
     clearMessages,
     setRoom,
-    postContent
+    postContent,
+    clearContent,
+    contentListener
   }
 )(FanPage);
