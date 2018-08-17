@@ -10,17 +10,15 @@ const Row = visComp.Row;
 const Col = visComp.Col;
 
 const Routes = () => {
-  const history = createHistory({
-    basename: process.env.PUBLIC_URL,
-  });
+  const baseURL = process.env.PUBLIC_URL;
   return (
-    <Router history={history} basename={process.env.PUBLIC_URL}>
+    <Router history={history} basename={baseURL}>
       <Row>
         <Col lg={12}>
           <Switch>
-            <Route exact path='/' component={HomePage} />
-            <Route exact path='/pages/' component={() => <FanPageGeneric />} />
-            <Route path='/pages/:id' component={FanPage} />
+            <Route exact path={baseURL + '/'} component={HomePage} />
+            <Route exact path={baseURL + '/pages'} component={() => <FanPageGeneric />} />
+            <Route path={baseURL + '/pages/:id'} component={FanPage} />
           </Switch>
         </Col>
       </Row>
