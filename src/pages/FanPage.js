@@ -7,6 +7,7 @@ import { Form, Button } from 'semantic-ui-react';
 import { Menu, Message } from 'semantic-ui-react';
 import Navbar from '../components/Navbar/Navbar';
 import ChatModal from '../components/Modal/ChatModal';
+import SubmitPostModal from '../components/Modal/SubmitPostModal';
 import Dashboard from '../components/Dashboard/Dashboard';
 import cover from '../assets/concertCover.jpg';
 import sendImg from '../assets/send.png';
@@ -23,6 +24,7 @@ class FanPage extends React.Component {
       room: this.props.match.params.id,
       owner: false,
       modalOpen: false,
+      submitModalOpen: false,
       content: '',
       closeMessage: false,
     }
@@ -50,6 +52,14 @@ class FanPage extends React.Component {
 
   closeModal() {
     this.setState({modalOpen : false});
+  }
+
+  openSubmitModal() {
+    this.setState({submitmodalOpen : true});
+  }
+
+  closeSubmitModal() {
+    this.setState({submitmodalOpen : false});
   }
 
   componentDidUpdate() {
@@ -127,14 +137,6 @@ class FanPage extends React.Component {
           Click the red button to open the post submission form!
         </p>
       </Message>)}
-      <Form className="sendBar">
-        <Form.Field className="input-container" onSubmit={this.submitContent}>
-          <input className='inputBar' type="text" value={this.state.content} onChange={this.changeContent} />
-          <Button basic color='pink' className='chatButton' type="submit" onClick={this.submitContent}>
-            <img src={sendImg} alt="send"/>
-          </Button>
-        </Form.Field>
-      </Form>
     </div>
     );
 
@@ -174,6 +176,16 @@ class FanPage extends React.Component {
                   isOpen={this.state.modalOpen}
                   openModal={this.openModal}
                   closeModal={this.closeModal}
+                  room={this.state.room}
+                />
+              </Col>
+            </Row>
+            <Row>
+              <Col xs={12} sm={12} md={6} lg={6}>
+                <SubmitPostModal
+                  isOpen={this.state.submitModalOpen}
+                  openModal={this.openSubmitModal}
+                  closeModal={this.closeSubmitModal}
                   room={this.state.room}
                 />
               </Col>
