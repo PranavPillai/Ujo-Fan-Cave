@@ -1,22 +1,10 @@
 .chat-box .messages {
   height: 70vh;
-  overflow-y: scroll;
-  width: 80vw; }
+  overflow-y: scroll; }
   .chat-box .messages .message-container {
     display: flex;
-    flex-direction: row; }
-    .chat-box .messages .message-container .message-image {
-      border-radius: 50%;
-      margin-right: 15px;
-      width: 40px;
-      height: 40px; }
-      .chat-box .messages .message-container .message-image.user_sent {
-        float: right;
-        order: 1;
-        margin-left: 10px; }
-      .chat-box .messages .message-container .message-image.others_sent {
-        float: left;
-        margin-right: 10px; }
+    flex-direction: row;
+    width: 97%; }
     .chat-box .messages .message-container .message {
       padding-bottom: 10px;
       border-radius: 5px;
@@ -25,18 +13,23 @@
       padding: 10px 18px;
       position: relative;
       vertical-align: top;
-      width: 60%; }
+      max-width: 70%;
+      min-width: 50%;
+      overflow-wrap: break-word; }
       .chat-box .messages .message-container .message.others_sent {
         float: left;
-        margin: 5px 45px 5px 20px;
+        margin-left: 0;
+        margin-right: auto;
+        margin-top: 10px;
         background-color: #D3D3D3; }
       .chat-box .messages .message-container .message.others_sent::before {
         background-color: #D3D3D3;
         box-shadow: -2px 2px 2px 0 rgba(178, 178, 178, 0.4);
         left: -9px; }
       .chat-box .messages .message-container .message.user_sent {
-        float: right;
-        margin: 5px 20px 5px 45px;
+        margin-left: auto;
+        margin-right: 0;
+        margin-top: 10px;
         background-color: #D13477;
         text-align: right;
         color: white; }
@@ -44,6 +37,17 @@
         background-color: #D13477;
         box-shadow: 2px -2px 2px 0 rgba(178, 178, 178, 0.4);
         right: -9px; }
+    .chat-box .messages .message-container .message-image {
+      border-radius: 50%;
+      width: 40px;
+      height: 40px; }
+      .chat-box .messages .message-container .message-image.user_sent {
+        float: right;
+        order: 1;
+        margin-left: 20px; }
+      .chat-box .messages .message-container .message-image.others_sent {
+        float: left;
+        margin-right: 20px; }
     .chat-box .messages .message-container .message::before {
       content: "\00a0";
       display: block;

@@ -11,11 +11,11 @@ class Message extends React.Component {
       },
     ); 
     const imageClassNames = classNames('message-image',
-    {
-      user_sent: this.props.address === this.props.message.address,
-      others_sent: this.props.address !== this.props.message.address,
-    },
-  ); 
+      {
+        user_sent: this.props.address === this.props.message.address,
+        others_sent: this.props.address !== this.props.message.address,
+      },
+    ); 
     return (
       <div className="message-container">
         <img src={this.props.imgSrc || crystal} className={imageClassNames} alt="user" />

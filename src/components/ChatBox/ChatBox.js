@@ -24,7 +24,9 @@ class ChatBox extends React.Component {
   }
 
   componentDidUpdate() {
-    this.scrollToBottom();
+    if(this.props.open) {
+      this.scrollToBottom();
+    }
   }
 
   scrollToBottom() {
