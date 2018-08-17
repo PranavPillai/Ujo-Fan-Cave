@@ -1,15 +1,25 @@
 # Ujo-Fan-Cave
 
-A side application of the Ujo platform, the Ujo-Fan-Cave--now referred to as 'The Beat', leverages Ujo's badge smart contract to fan pages for the music groups on its platform. Fan pages allow for real time chat with others who have purchased the same badge, as well as an artist dashboard where the musician can offer his super-fans exclusive deals and content. 
+A side application of the [Ujo](https://ujomusic.com) platform. The Ujo-Fan-Cave--now referred to as 'The Beat', leverages Ujo's badge smart contract to fan pages for the music groups on its platform. Fan pages allow for real time chat with others who have purchased the same badge, as well as an artist dashboard where the musician can offer his or her super-fans exclusive deals and content. 
 
-The application was built using Web3 and Metamask to interact with the badge contract, React/Redux on the frontend, and used Firebase on the backend to store messages and artists' posts. Ujo's API server was also used to pull user and badge information. 
+## Getting Started
 
-To run, do the following:
+Register and buy badges on [Ujo dev server](www.dev.ujomusic.com). Be sure to have [MetaMask](https://metamask.io) installed. [Rinkby eth](https://faucet.rinkeby.io) is needed for testing.
 
-1. Register and buy badges on www.dev.ujomusic.com
+Clone this repository
 
-2. Clone this repository, and npm install for all dependencies
+```
+$ git clone git@github.com:PranavPillai/Ujo-Fan-Cave.git
+```
 
-3. Call 'npm run dev'
+Install dependencies
 
-4. You're all set!
+```
+$ npm install 
+```
+
+Run the platform
+
+```
+$ npm run dev
+```
