@@ -16,7 +16,7 @@ export const clearContent = () => async dispatch => {
 }
 
 export const contentListener = (room) => async dispatch => {
-  const dashboardRef = firebase.database().ref(room);
+  const dashboardRef = firebase.database().ref(room+'-dashboard');
   dashboardRef.on('child_added', data => {
     const contentObj = data.val();
     dispatch(dispatchContent(contentObj));

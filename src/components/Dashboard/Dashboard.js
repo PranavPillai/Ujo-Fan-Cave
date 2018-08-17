@@ -32,6 +32,9 @@ class Dashboard extends React.Component {
   }
 
   render() {
+    const {
+      input, onChange, onSubmit, address, onClick
+    } = this.props;
     return(
       <div className="chat-box modal-content-container">
         <Row>
@@ -44,14 +47,6 @@ class Dashboard extends React.Component {
               }
               <li style={{float: 'left', clear: 'both', listStyle: 'none',}} ref={(el) => {this.contentsEnd = el; }}/>
             </ul>
-            <Form className="sendBar">
-              <Form.Field className="input-container" onSubmit={onSubmit}>
-                <input className='inputBar' type="text" value={input} onChange={onChange} />
-                <Button basic color='pink' className='chatButton' type="submit" onClick={onSubmit}>
-                  <img src={sendImg} alt="send"/>
-                </Button>
-              </Form.Field>
-            </Form>
           </Col>
         </Row>
       </div>
@@ -61,10 +56,10 @@ class Dashboard extends React.Component {
 
 function mapStateToProps(state) {
   return {
-    contents: state.chat.contents,
+    contents: state.dashboard.content,
     user: state.user.user,
     address: state.user.user.ethereumAddress,
   };
 }
 
-export default Dashboard;
+export default connect(mapStateToProps)(Dashboard);
