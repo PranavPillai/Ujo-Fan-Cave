@@ -9,17 +9,23 @@ import visComp from 'ujo-style-guide';
 const Row = visComp.Row;
 const Col = visComp.Col;
 
-const Routes = () =>
-  <Router history={history}>
-    <Row>
-      <Col lg={12}>
-        <Switch>
-          <Route exact path='/' component={HomePage} />
-          <Route exact path='/pages/' component={() => <FanPageGeneric />} />
-          <Route path='/pages/:id' component={FanPage} />
-        </Switch>
-      </Col>
-    </Row>
-  </Router>
+const Routes = () => {
+  const history = createHistory({
+    basename: process.env.PUBLIC_URL,
+  });
+  return (
+    <Router history={history} basename={process.env.PUBLIC_URL}>
+      <Row>
+        <Col lg={12}>
+          <Switch>
+            <Route exact path='/' component={HomePage} />
+            <Route exact path='/pages/' component={() => <FanPageGeneric />} />
+            <Route path='/pages/:id' component={FanPage} />
+          </Switch>
+        </Col>
+      </Row>
+    </Router>
+  );
+}
 
 export default Routes;
