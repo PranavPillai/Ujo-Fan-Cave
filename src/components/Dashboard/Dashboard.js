@@ -3,6 +3,7 @@ import visComp from 'ujo-style-guide';
 import { connect } from 'react-redux';
 import Content from './Content';
 import './styles.css';
+import { Button } from 'semantic-ui-react';
 
 const Row = visComp.Row;
 const Col = visComp.Col;
@@ -12,21 +13,29 @@ class Dashboard extends React.Component {
     super(props);
     this.state = {
       open: this.props.open,
+      currLength: this.props.contents.length,
+      currIndex: Math.max(0, this.props.contents.length - 1),
     }
-    this.scrollToBottom = this.scrollToBottom.bind(this);
+    this.increaseIndex = this.increaseIndex.bind(this);
+    this.decreaseIndex = this.decreaseIndex.bind(this);
   }
 
   componentDidMount() {
-    this.scrollToBottom();
     this.setState({open: this.props.open});
   }
 
-  componentDidUpdate() {
-    this.scrollToBottom();
+  componentDidUpdate(props) {
+    if(props.contents.length != this.state.currLength) {
+      this.setState({currLength: props.contents.length});
+    }
   }
 
-  scrollToBottom() {
-    this.contentsEnd.scrollIntoView({behavior: 'smooth'});
+  increaseIndex() {
+    this.setState({currIndex: Math.min(this.state.currLength - 1, this.state.currIndex + 1)});
+  }
+
+  decreaseIndex() {
+    this.setState({currIndex: Math.max(0, this.state.currIndex - 1)});
   }
 
   render() {
@@ -37,13 +46,18 @@ class Dashboard extends React.Component {
       <div className="chat-box modal-content-container">
         <Row>
           <Col xs={12} sm={12} md={6} lg={6}>
+            <div className="headers">
+              <h1 className="exclusive-header">{this.props.badge.name}'s Board</h1>
+              <h4 className="exclusive-subheader">Where your favorite artist can personally post exclusive music, performances, and merch!</h4>
+            </div>
             <ul className="contents-container" ref="contentList">
+              <Button className="nav-btn prev" disabled={this.state.currIndex === 0} onClick={this.decreaseIndex}>Prev</Button>
               {
-                this.props.contents.map((contentObj) => {
-                  return <Content key={contentObj.time} content={contentObj} address={address}/>;
+                this.props.contents.map((contentObj, i) => {
+                  return <Content key={contentObj.time} content={contentObj} address={address} notHidden={this.state.currIndex === i}/>;
                 })
               }
-              <li style={{float: 'left', clear: 'both', listStyle: 'none',}} ref={(el) => {this.contentsEnd = el; }}/>
+              <Button className="nav-btn next" disabled={this.state.currIndex === this.state.currLength-1} onClick={this.increaseIndex}>Next</Button>
             </ul>
           </Col>
         </Row>

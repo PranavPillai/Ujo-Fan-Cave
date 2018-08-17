@@ -108,7 +108,6 @@ class FanPage extends React.Component {
 
   renderFanPage(badgeName) {
     const badge = this.props.badges[this.state.room];
-    console.log(this.state.owner);
     const postInput =
     (<Form className="sendBar">
       <Form.Field className="input-container" onSubmit={this.submitContent}>
@@ -139,6 +138,7 @@ class FanPage extends React.Component {
                   input={this.state.content}
                   onChange={this.changeContent}
                   onSubmit={this.submitContent}
+                  badge={badge}
                 />
                 {
                   this.state.owner && postInput

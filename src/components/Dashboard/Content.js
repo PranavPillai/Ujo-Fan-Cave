@@ -4,14 +4,7 @@ import { Container, Segment } from 'semantic-ui-react';
 
 class Content extends React.Component {
   render() {
-    const contentClassNames = classNames('content',
-      {
-      },
-    );
-    const imageClassNames = classNames('message-image',
-    {
-    },
-  );
+    const segmentClassNames = classNames('post', {hidden: !this.props.notHidden});
     return (
       // <div className="content-container">
       //   <li className={contentClassNames}>
@@ -19,10 +12,12 @@ class Content extends React.Component {
       //     <p>{this.props.content.content}</p>
       //   </li>
       // </div>
-      <Segment>
-        <sup>{this.props.content.time}</sup>
-        <p>{this.props.content.content}</p>
-      </Segment>
+      <div className={segmentClassNames}>
+        <Segment>
+          <sup>{this.props.content.time}</sup>
+          <p>{this.props.content.content}</p>
+        </Segment>
+      </div>
     );
   }
 }
