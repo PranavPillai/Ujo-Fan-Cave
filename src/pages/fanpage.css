@@ -5,6 +5,11 @@
   overflow-y: auto;
   overflow-x: hidden;
   min-height: 100vh; }
+  .fan-page .ui.form.sendBar .input-container {
+    display: flex;
+    flex-direction: row;
+    margin-left: 150px;
+    width: 60vw; }
   .fan-page .banner {
     position: absolute;
     top: 0;

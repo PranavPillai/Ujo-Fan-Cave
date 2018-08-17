@@ -1,8 +1,6 @@
 import React from 'react';
 import visComp from 'ujo-style-guide';
-import { Form, Button } from 'semantic-ui-react';
 import { connect } from 'react-redux';
-import sendImg from '../../assets/send.png';
 import Content from './Content';
 import './styles.css';
 
@@ -33,13 +31,13 @@ class Dashboard extends React.Component {
 
   render() {
     const {
-      input, onChange, onSubmit, address, onClick
+      address,
     } = this.props;
     return(
       <div className="chat-box modal-content-container">
         <Row>
           <Col xs={12} sm={12} md={6} lg={6}>
-            <ul className="contents" ref="contentList">
+            <ul className="contents-container" ref="contentList">
               {
                 this.props.contents.map((contentObj) => {
                   return <Content key={contentObj.time} content={contentObj} address={address}/>;

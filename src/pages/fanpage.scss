@@ -6,6 +6,14 @@
   overflow-y: auto;
   overflow-x: hidden;
   min-height: 100vh;
+  .ui.form.sendBar {
+    .input-container {
+      display: flex;
+      flex-direction: row;
+      margin-left: 150px;
+      width: 60vw;  
+    }
+  }
   .banner {
     position: absolute;
     top: 0;
