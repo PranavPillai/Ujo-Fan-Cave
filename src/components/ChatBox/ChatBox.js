@@ -1,8 +1,8 @@
 import React from 'react';
 import visComp from 'ujo-style-guide';
+import { Form, Button } from 'semantic-ui-react';
 import { connect } from 'react-redux';
 import sendImg from '../../assets/send.png';
-import attachFile from '../../assets/attach-file.png';
 import Message from './Message';
 import './styles.css';
 
@@ -12,12 +12,15 @@ const Col = visComp.Col;
 class ChatBox extends React.Component {
   constructor(props) {
     super(props);
-
+    this.state = {
+      open: this.props.open,
+    }
     this.scrollToBottom = this.scrollToBottom.bind(this);
   }
 
   componentDidMount() {
     this.scrollToBottom();
+    this.setState({open: this.props.open});
   }
 
   componentDidUpdate() {
@@ -36,7 +39,7 @@ class ChatBox extends React.Component {
       <div className="chat-box modal-content-container">
         <Row>
           <Col xs={12} sm={12} md={6} lg={6}>
-            <ul className="messages" ref="messageList" onScroll={this.onScroll}>
+            <ul className="messages" ref="messageList">
               {
                 this.props.messages.map((messageObj) => {
                   return <Message key={messageObj.time} message={messageObj} address={address}/>;
@@ -44,15 +47,14 @@ class ChatBox extends React.Component {
               }
               <li style={{float: 'left', clear: 'both', listStyle: 'none',}} ref={(el) => {this.messagesEnd = el; }}/>
             </ul>
-            <form className="sendBar">
-              <input className='inputBar' type="text" value={input} onChange={onChange} />
-              <button className='chatButton' type="submit" onClick={onSubmit}>
-                <img src={sendImg} alt="send"/>
-              </button>
-              <button className='chatButton'>
-                <img src={attachFile} alt="attach"/>
-              </button>
-            </form>
+            <Form className="sendBar">
+              <Form.Field className="input-container" onSubmit={onSubmit}>
+                <input className='inputBar' type="text" value={input} onChange={onChange} />
+                <Button color='purple' className='chatButton' type="submit" onClick={onSubmit}>
+                  <img src={sendImg} alt="send"/>
+                </Button>
+              </Form.Field>
+            </Form>
           </Col>
         </Row>
       </div>

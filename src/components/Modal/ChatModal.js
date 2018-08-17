@@ -1,42 +1,34 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React from 'react'
+import ChatBox from '../ChatBox/ChatBox';
 import { connect } from 'react-redux';
 import { sendMessage, clearMessages, setRoom } from '../../store/chat/actions';
-import classNames from 'classnames';
-import { Button, Header, Icon, Image, Modal } from 'semantic-ui-react';
-
-import ChatBox from '../ChatBox/ChatBox';
+import { Popover, Tooltip, Modal, OverlayTrigger, } from 'react-bootstrap';
+import { Button, } from 'semantic-ui-react';
+import MessageIcon from '../../assets/messaging-icon.png';
 import './modal.css';
 
 class ChatModal extends React.Component {
-  static propTypes = {
-    isOpen: PropTypes.bool.isRequired,
-    openModal: PropTypes.func.isRequired,
-    closeModal: PropTypes.func.isRequired,
-  };
+  constructor(props, context) {
+    super(props, context);
 
-  constructor(props) {
-    super(props);
+    this.handleShow = this.handleShow.bind(this);
+    this.handleClose = this.handleClose.bind(this);
+
     this.state = {
+      show: false,
       input: '',
       room: this.props.room,
-    }
+    };
     this.onChange = this.onChange.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
   }
 
-  componentDidMount() {
-    this.props.clearMessages();
-    this.props.setRoom(this.props.room);
+  handleClose() {
+    this.setState({ show: false });
   }
 
-  componentDidUpdate() {
-    const { room } = this.props;
-    if(room !== this.state.room) {
-      this.setState({ room });
-      this.props.clearMessages();
-      this.props.setRoom(room);
-    }
+  handleShow() {
+    this.setState({ show: true });
   }
 
   onChange(e) {
@@ -57,31 +49,20 @@ class ChatModal extends React.Component {
   }
 
   render() {
-          // <Modal trigger={<Button>Long Modal</Button>}>
-      //   <ChatBox input={this.state.input} onChange={this.onChange} onSubmit={this.onSubmit} />
-      // </Modal>
-      // <div>
-      //   <ChatBox input={this.state.input} onChange={this.onChange} onSubmit={this.onSubmit} />
-      // </div>
     return (
-      // <Modal open={true} onClose={this.props.closeModal}>
-      //   <Modal.Header>Profile Picture</Modal.Header>
-      //   <Modal.Content image scrolling>
-      //     <Image size='medium' src='https://react.semantic-ui.com/images/wireframe/image.png' wrapped />
-    
-      //     <Modal.Description>
-      //       <Header>Modal Header</Header>
-      //       <p>This is an example of expanded content that will cause the modal's dimmer to scroll</p>
-      //     </Modal.Description>
-      //   </Modal.Content>
-      //   <Modal.Actions>
-      //     <Button primary>
-      //       Proceed <Icon name='chevron right' />
-      //     </Button>
-      //   </Modal.Actions>
-      // </Modal>
-      <div>
-        <ChatBox input={this.state.input} onChange={this.onChange} onSubmit={this.onSubmit} />
+      <div className="modal-container">
+        <button bsStyle="primary" bsSize="large" onClick={this.handleShow} className="modal-button">
+          <img src={MessageIcon} alt="message button" className="modal-button-icon" />
+        </button>
+        <Modal show={this.state.show} onHide={this.handleClose}>
+          <Modal.Header className="header">
+            <h2 className="header-text">Community Chat</h2>
+            <Button className="exit-button" onClick={this.handleClose}>x</Button>
+          </Modal.Header>
+          <Modal.Body>
+            <ChatBox input={this.state.input} onChange={this.onChange} onSubmit={this.onSubmit} open={this.state.show} />
+          </Modal.Body>
+        </Modal>
       </div>
     );
   }
