@@ -1,0 +1,17 @@
+.fan-page-generic {
+  background-image: linear-gradient(to right, #00A5FF 0%, #F23584 80%);
+  .ui.raised.segment.welcome-panel {
+    position: absolute;
+    top: 40%;
+    margin-right: 20px;
+    margin-left: auto;
+    .fan-page-header {
+      text-align: center;
+    }
+    .fan-page-description {
+      margin-top: 20px;
+      font-size: 1.6em;
+      font-weight: lighter;
+    }
+  }
+}

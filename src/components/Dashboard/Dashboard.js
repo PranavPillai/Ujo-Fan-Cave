@@ -3,7 +3,7 @@ import visComp from 'ujo-style-guide';
 import { connect } from 'react-redux';
 import Content from './Content';
 import './styles.css';
-import { Button } from 'semantic-ui-react';
+import { Button, Segment } from 'semantic-ui-react';
 
 const Row = visComp.Row;
 const Col = visComp.Col;
@@ -46,10 +46,10 @@ class Dashboard extends React.Component {
       <div className="chat-box modal-content-container">
         <Row>
           <Col xs={12} sm={12} md={6} lg={6}>
-            <div className="headers">
+          <Segment><div className="headers">
               <h1 className="exclusive-header">{this.props.badge.name}'s Board</h1>
               <h4 className="exclusive-subheader">Where your favorite artist can personally post exclusive music, performances, and merch!</h4>
-            </div>
+            </div></Segment>
             <ul className="contents-container" ref="contentList">
               <Button className="nav-btn prev" disabled={this.state.currIndex === 0} onClick={this.decreaseIndex}>Prev</Button>
               {

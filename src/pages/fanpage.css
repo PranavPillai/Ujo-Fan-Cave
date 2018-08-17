@@ -24,7 +24,8 @@
     flex-direction: row;
     height: 100px;
     line-height: 100px;
-    width: 100%; }
+    width: 100%;
+    margin-bottom: 50px; }
     .fan-page .banner-text-container .group-name {
       padding-left: 40px; }
     .fan-page .banner-text-container .badge-count {
