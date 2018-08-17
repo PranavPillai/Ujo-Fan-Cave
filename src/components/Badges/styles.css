@@ -1,0 +1,22 @@
+@import url("https://fonts.googleapis.com/css?family=Oswald");
+.badge-list-container {
+  font-family: 'Oswald', sans-serif; }
+  .badge-list-container .badge-container {
+    cursor: pointer;
+    height: 120px;
+    color: black;
+    font-size: 1.6rem;
+    order: 1;
+    padding: 20px; }
+    .badge-list-container .badge-container .badge-image {
+      border-radius: 50%;
+      width: 75px;
+      height: 75px; }
+    .badge-list-container .badge-container .badge-name {
+      float: right;
+      padding-top: 20px;
+      color: black; }
+    .badge-list-container .badge-container.active, .badge-list-container .badge-container:hover {
+      background-color: #E5E9EF; }
+  .badge-list-container .link {
+    text-decoration: none; }

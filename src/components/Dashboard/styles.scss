@@ -1,0 +1,29 @@
+.contents-container {
+  margin-left: 150px;
+  height: 40vh;
+  width: 60vw;
+  padding-left: 0;
+  display: flex;
+  flex-direction: row;
+  .post {
+    width: 100%;
+  }
+  .ui.button.nav-btn {
+    height: 40px;
+    margin: 0 .25em 0 .25em;
+  }
+}
+
+.hidden {
+  display: none;
+}
+
+.headers {
+  padding-left: 20px;
+  .exclusive-header {
+
+  }
+  .exclusive-subheader {
+    margin-top: 0;
+  }
+}

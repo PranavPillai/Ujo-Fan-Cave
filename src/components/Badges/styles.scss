@@ -1,0 +1,32 @@
+@import url('https://fonts.googleapis.com/css?family=Oswald');
+.badge-list-container {
+  font-family: 'Oswald', sans-serif;
+  .badge-container {
+    cursor: pointer;
+    height: 120px;
+    color: black;
+    font-size: 1.6rem;
+    order: 1;
+    padding: 20px;
+
+    .badge-image {
+      border-radius: 50%;
+      width: 75px;
+      height: 75px;
+    }
+    
+    .badge-name {
+      float: right;
+      padding-top: 20px;
+      color: black;
+    }
+
+    &.active, &:hover {
+      background-color: #E5E9EF;
+    }
+  }
+
+  .link {
+    text-decoration: none;
+  }
+}
